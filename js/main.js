@@ -28,7 +28,7 @@ var preload = function() {
     AngryMexicans.game.time.advancedTiming = true;
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
-    AngryMexicans.game.load.image('background', 'Assets/map5.jpg');
+    AngryMexicans.game.load.image('background', 'Assets/map3.png');
 }
 
 // initialize the game
