@@ -1,10 +1,14 @@
 var AngryMexicans = {};
 AngryMexicans.configs = {
+    minWidth : 640,
+    minHeight : 360,
+    gameWidth : 1280,
+    gameHeight : 720,
     mapSpeed: 3
 };
 
 window.onload = function() {
-    AngryMexicans.game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+    AngryMexicans.game = new Phaser.Game(AngryMexicans.configs.gameWidth, AngryMexicans.configs.gameHeight, Phaser.AUTO, '', {
         preload: preload,
         create: create,
         update: update,
@@ -14,17 +18,17 @@ window.onload = function() {
 
 // preparations before game starts
 var preload = function() {
-    AngryMexicans.game.scale.minWidth = 400;
-    AngryMexicans.game.scale.minHeight = 300;
-    AngryMexicans.game.scale.maxWidth = 800;
-    AngryMexicans.game.scale.maxHeight = 600;
+    AngryMexicans.game.scale.minWidth = AngryMexicans.configs.minWidth;
+    AngryMexicans.game.scale.minHeight = AngryMexicans.configs.minHeight;
+    AngryMexicans.game.scale.gameWidth = AngryMexicans.configs.gameWidth;
+    AngryMexicans.game.scale.gameHeight = AngryMexicans.configs.gameHeight;
     AngryMexicans.game.scale.pageAlignHorizontally = true;
     AngryMexicans.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     AngryMexicans.game.time.advancedTiming = true;
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
-    AngryMexicans.game.load.image('background', 'Assets/map2.jpg');
+    AngryMexicans.game.load.image('background', 'Assets/map5.jpg');
 }
 
 // initialize the game
@@ -32,7 +36,7 @@ var create = function() {
     AngryMexicans.game.physics.startSystem(Phaser.Physics.ARCADE);
     AngryMexicans.keyboard = AngryMexicans.game.input.keyboard;
 
-    AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0, 800, 600, 'background');
+    AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0, AngryMexicans.configs.gameWidth, AngryMexicans.configs.gameHeight, 'background');
 }
 
 // update game state each frame
