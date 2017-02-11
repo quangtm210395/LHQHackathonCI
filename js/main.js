@@ -33,7 +33,6 @@ var preload = function() {
     AngryMexicans.game.load.image('bullet', '/Assets/gfx/bullet.png');
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
-<<<<<<< HEAD
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
     AngryMexicans.game.load.image('trump', "Assets/trump.png");
     AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
@@ -68,7 +67,7 @@ var create = function() {
     AngryMexicans.enemies.push(
         new Trump(
             1100,
-            480,
+            this.game.height - 75,
             'trump',
             {}
         )
@@ -76,7 +75,7 @@ var create = function() {
     AngryMexicans.players.push(
         new Mexican(
             150,
-            480,
+            this.game.height - 76,
             'mexican1',
             {
                 cooldown : 0.15
