@@ -32,7 +32,7 @@ var preload = function() {
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
 
 }
-
+//Sua
 // initialize the game
 var create = function() {
     AngryMexicans.game.physics.startSystem(Phaser.Physics.ARCADE);
