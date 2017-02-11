@@ -7,6 +7,7 @@ AngryMexicans.configs = {
     mapSpeed: 3
 };
 
+
 window.onload = function() {
     AngryMexicans.game = new Phaser.Game(AngryMexicans.configs.gameWidth, AngryMexicans.configs.gameHeight, Phaser.AUTO, '', {
         preload: preload,
@@ -28,7 +29,8 @@ var preload = function() {
     AngryMexicans.game.time.advancedTiming = true;
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
-    AngryMexicans.game.load.image('background', 'Assets/map3.png');
+    AngryMexicans.game.load.image('background', 'Assets/map4.png');
+
 }
 
 // initialize the game
