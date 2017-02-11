@@ -10,6 +10,7 @@ AngryMexicans.configs = {
     GRAVITY : 980
 };
 
+
 window.onload = function() {
     AngryMexicans.game = new Phaser.Game(AngryMexicans.configs.gameWidth, AngryMexicans.configs.gameHeight, Phaser.AUTO, '', {
         preload: preload,
@@ -32,13 +33,15 @@ var preload = function() {
     AngryMexicans.game.load.image('bullet', '/Assets/gfx/bullet.png');
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
-    AngryMexicans.game.load.image('background', 'Assets/map3.png');
+<<<<<<< HEAD
+    AngryMexicans.game.load.image('background', 'Assets/map4.png');
     AngryMexicans.game.load.image('trump', "Assets/trump.png");
     AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
     AngryMexicans.game.load.image('mexican2', "Assets/mexican2.png");
     AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
-}
 
+}
+//Sua
 // initialize the game
 var create = function() {
     AngryMexicans.game.physics.startSystem(Phaser.Physics.ARCADE);
