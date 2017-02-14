@@ -8,7 +8,7 @@ class Mexican{
         this.configs = configs;
         // this.sprite.body.collideWorldBounds = true;
         // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
-        this.sprite.body.setRectangle(120, 120);
+        this.sprite.body.setCircle(80, 10, 10, 0);
 
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.timeSinceLastFire = 0;

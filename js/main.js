@@ -159,13 +159,13 @@ var entityEnemyCollider = function(entitySprite, enemySprite) {
 // before camera render (mostly for debug)
 var render = function() {
     // AngryMexicans.game.body.debug(AngryMexicans.map);
-    // AngryMexicans.bulletGroup.forEach(function(bullet){
-    //     AngryMexicans.game.debug.body(bullet);
-    // });
-    // AngryMexicans.playerGroup.forEach(function(player){
-    //     AngryMexicans.game.debug.body(player);
-    // });
-    // AngryMexicans.enemyGroup.forEach(function(enemy){
-    //     AngryMexicans.game.debug.body(enemy);
-    // });
+    AngryMexicans.bulletGroup.forEach(function(bullet){
+        AngryMexicans.game.debug.body(bullet);
+    });
+    AngryMexicans.playerGroup.forEach(function(player){
+        AngryMexicans.game.debug.body(player);
+    });
+    AngryMexicans.enemyGroup.forEach(function(enemy){
+        AngryMexicans.game.debug.body(enemy);
+    });
 }

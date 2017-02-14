@@ -7,16 +7,15 @@ class Trump {
         );
         this.configs = configs;
         // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
-        this.sprite.body.setRectangle(92, 140);
+        this.sprite.body.setRectangle(50, 90, 5, 5);
         // this.sprite.collideWorldBounds = true;
-        // this.sprite.body.setCircle(75, -25, 0, 0);
 
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
     }
 
     update() {
         this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup]);
-        console.log(2);
+
         this.sprite.body.setZeroVelocity();
         if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {
             this.sprite.body.moveLeft(200);
