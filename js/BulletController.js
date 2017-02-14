@@ -9,9 +9,10 @@ class BulletController {
 
         // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
         // this.sprite.body.setCircle(25, 0, 0, 0);
-        this.sprite.body.setRectangle(34,54, 2, 3);
         // this.sprite.checkWorldBounds = true;
         // this.sprite.outOfBoundsKill = false;
+        
+        this.sprite.body.setRectangle(34,54, 2, 3);
 
         this.sprite.body.setCollisionGroup(AngryMexicans.bulletCollisionGroup);
 

@@ -7,8 +7,8 @@ class Trump {
         );
         this.configs = configs;
         // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
-        this.sprite.body.setRectangle(50, 90, 5, 5);
         // this.sprite.collideWorldBounds = true;
+        this.sprite.body.setRectangle(50, 90, 5, 5);
 
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
     }

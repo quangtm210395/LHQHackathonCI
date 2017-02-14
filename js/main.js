@@ -112,10 +112,6 @@ var create = function() {
 
 // update game state each frame
 var update = function() {
-    // AngryMexicans.game.physics.arcade.collide(AngryMexicans.playerGroup, AngryMexicans.enemyGroup, null, null, this);
-    // AngryMexicans.game.physics.arcade.collide(AngryMexicans.bulletGroup, AngryMexicans.enemyGroup, bulletEnemyCollider, null, this);
-    // AngryMexicans.game.physics.arcade.collide(AngryMexicans.bulletGroup, AngryMexicans.entityGroup, bulletEntityCollider, null, this);
-    // AngryMexicans.game.physics.arcade.collide(AngryMexicans.entityGroup, AngryMexicans.enemyGroup, null, null, this);
 
     //set gun angle to Mouse Pointer
     AngryMexicans.gun.rotation = AngryMexicans.game.physics.arcade.angleToPointer(AngryMexicans.gun);
@@ -143,29 +139,18 @@ function hitTrump(bullet, trump) {
     bullet.sprite.kill();
 }
 
-var bulletEnemyCollider = function(bulletSprite, enemySprite) {
-    bulletSprite.kill();
-}
-
-var bulletEntityCollider = function(bulletSprite, entitySprite) {
-    bulletSprite.kill();
-}
-
-var entityEnemyCollider = function(entitySprite, enemySprite) {
-
-}
 
 
 // before camera render (mostly for debug)
 var render = function() {
     // AngryMexicans.game.body.debug(AngryMexicans.map);
-    AngryMexicans.bulletGroup.forEach(function(bullet){
-        AngryMexicans.game.debug.body(bullet);
-    });
-    AngryMexicans.playerGroup.forEach(function(player){
-        AngryMexicans.game.debug.body(player);
-    });
-    AngryMexicans.enemyGroup.forEach(function(enemy){
-        AngryMexicans.game.debug.body(enemy);
-    });
+    // AngryMexicans.bulletGroup.forEach(function(bullet){
+    //     AngryMexicans.game.debug.body(bullet);
+    // });
+    // AngryMexicans.playerGroup.forEach(function(player){
+    //     AngryMexicans.game.debug.body(player);
+    // });
+    // AngryMexicans.enemyGroup.forEach(function(enemy){
+    //     AngryMexicans.game.debug.body(enemy);
+    // });
 }
