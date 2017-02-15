@@ -29,7 +29,7 @@ var preload = function() {
     AngryMexicans.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     AngryMexicans.game.time.advancedTiming = true;
-    AngryMexicans.game.load.image('bullet', '/Assets/gfx/bullet.png');
+    AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
@@ -43,6 +43,9 @@ var preload = function() {
     AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
     AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
     AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
+    AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
+    AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
+    AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
 
 }
 //Sua
@@ -63,7 +66,7 @@ var create = function() {
     AngryMexicans.playerCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
     AngryMexicans.bulletCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
     AngryMexicans.entityCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
-    AngryMexicans.ennemyCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
+    AngryMexicans.enemyCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
 
     //add phisicsGroups
     AngryMexicans.enemyGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
@@ -75,14 +78,13 @@ var create = function() {
     AngryMexicans.game.physics.p2.gravity.y = AngryMexicans.configs.GRAVITY;
 
     // Create an object representing our gun
-    AngryMexicans.gun = this.game.add.sprite(200, this.game.height - 64, 'bullet');
+    AngryMexicans.gun = this.game.add.sprite(200, this.game.height - 64, 'gun');
 
     // Set the pivot point to the center of the gun
     AngryMexicans.gun.anchor.setTo(0.5, 0.5);
 
     AngryMexicans.enemies = [];
     AngryMexicans.players = [];
-    AngryMexicans.bullets = [];
     AngryMexicans.entities = [];
 
     AngryMexicans.enemies.push(
@@ -129,15 +131,12 @@ var update = function() {
 
 
     AngryMexicans.bulletGroup.forEachAlive(function(bullet) {
-            // bullet.body.collides(AngryMexicans.enemyCollisionGroup, hitTrump);
-            bullet.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI/2;
+            bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI/2;
        }, this);
 
 }
 
-function hitTrump(bullet, trump) {
-    bullet.sprite.kill();
-}
+
 
 
 

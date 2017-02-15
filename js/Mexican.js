@@ -9,13 +9,15 @@ class Mexican{
         // this.sprite.body.collideWorldBounds = true;
         // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
         this.sprite.body.setCircle(80, 10, 10, 0);
+        this.sprite.body.clearShapes();
+        this.sprite.body.loadPolygon('spritePhysics', spriteName);
 
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.timeSinceLastFire = 0;
     }
 
     update() {
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup]);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
 
         this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
         if(AngryMexicans.game.input.activePointer.isDown &&
@@ -42,15 +44,19 @@ class Mexican{
     fire(){
         var bullet = new BulletController(
             this.sprite.position,
-            "BulletType2.png"
+            "bullet-upgraded"
         ).sprite;
         bullet.reset(AngryMexicans.gun.x, AngryMexicans.gun.y);
-        bullet.rotation = AngryMexicans.gun.rotation + Math.PI/2;
-        bullet.body.collides([AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup]);
+        bullet.body.rotation = AngryMexicans.gun.rotation + Math.PI/2;
+        bullet.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
 
         // Shoot it in the right direction
-        bullet.body.velocity.x = Math.cos(bullet.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
-        bullet.body.velocity.y = Math.sin(bullet.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
+        bullet.body.velocity.x = Math.cos(bullet.body.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
+        bullet.body.velocity.y = Math.sin(bullet.body.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
 
+    }
+
+    bulletHit(bullet, trump) {
+        bullet.sprite.kill();
     }
 }
