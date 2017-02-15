@@ -6,8 +6,6 @@ class Mexican{
             configs
         );
         this.configs = configs;
-        // this.sprite.body.collideWorldBounds = true;
-        // this.sprite.anchor = new Phaser.Point(0.5, 0.5);
         this.sprite.body.setCircle(80, 10, 10, 0);
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
@@ -44,15 +42,15 @@ class Mexican{
     fire(){
         var bullet = new BulletController(
             this.sprite.position,
-            "bullet-upgraded"
+            'bullet-upgraded'
         ).sprite;
         bullet.reset(AngryMexicans.gun.x, AngryMexicans.gun.y);
         bullet.body.rotation = AngryMexicans.gun.rotation + Math.PI/2;
         bullet.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
 
         // Shoot it in the right direction
-        bullet.body.velocity.x = Math.cos(bullet.body.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
-        bullet.body.velocity.y = Math.sin(bullet.body.rotation - Math.PI/2) * AngryMexicans.configs.bulletSpeed;
+        bullet.body.velocity.x = Math.cos(bullet.body.rotation - Math.PI/2) * bullet.bulletSpeed;
+        bullet.body.velocity.y = Math.sin(bullet.body.rotation - Math.PI/2) * bullet.bulletSpeed;
 
     }
 

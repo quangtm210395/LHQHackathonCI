@@ -25,13 +25,14 @@ var preload = function() {
     AngryMexicans.game.scale.minHeight = AngryMexicans.configs.minHeight;
     AngryMexicans.game.scale.gameWidth = AngryMexicans.configs.gameWidth;
     AngryMexicans.game.scale.gameHeight = AngryMexicans.configs.gameHeight;
+
     AngryMexicans.game.scale.pageAlignHorizontally = true;
     AngryMexicans.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     AngryMexicans.game.time.advancedTiming = true;
-    AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
 
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
+
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
     AngryMexicans.game.load.image('trump', "Assets/trump.png");
     AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
@@ -45,6 +46,8 @@ var preload = function() {
     AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
     AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
     AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
+    AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
+
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
 
 }
@@ -59,8 +62,10 @@ var create = function() {
     AngryMexicans.game.physics.p2.restitution = 0.9;
     AngryMexicans.game.physics.p2.updateBoundsCollisionGroup();
 
-    AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0, AngryMexicans.configs.gameWidth, AngryMexicans.configs.gameHeight, 'background');
-
+    //add map
+    AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0,
+      AngryMexicans.configs.gameWidth,
+      AngryMexicans.configs.gameHeight, 'background');
 
     //add collisionGroup
     AngryMexicans.playerCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
@@ -83,6 +88,7 @@ var create = function() {
     // Set the pivot point to the center of the gun
     AngryMexicans.gun.anchor.setTo(0.5, 0.5);
 
+    //groups
     AngryMexicans.enemies = [];
     AngryMexicans.players = [];
     AngryMexicans.entities = [];
@@ -95,6 +101,7 @@ var create = function() {
             {}
         )
     );
+
     AngryMexicans.players.push(
         new Mexican(
             150,
@@ -129,16 +136,12 @@ var update = function() {
         entity.update();
     });
 
-
+    //bullets rotation
     AngryMexicans.bulletGroup.forEachAlive(function(bullet) {
             bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI/2;
        }, this);
 
 }
-
-
-
-
 
 // before camera render (mostly for debug)
 var render = function() {
