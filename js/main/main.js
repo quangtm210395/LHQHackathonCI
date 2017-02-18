@@ -5,10 +5,11 @@ AngryMexicans.configs = {
     minHeight: 360,
     gameWidth: 1280,
     gameHeight: 720,
-    mapSpeed: 3,
     bulletSpeed: 1500,
     bulletStrength: 1,
-    GRAVITY: 2000
+    GRAVITY: 2000,
+    MASS : 100,
+    K : 5000
 };
 
 window.onload = function() {
@@ -35,26 +36,26 @@ var preload = function() {
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
 
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
-    AngryMexicans.game.load.image('trump', "Assets/trump.png");
-    AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
-    AngryMexicans.game.load.image('mexican2', "Assets/mexican2.png");
-    AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
-    AngryMexicans.game.load.image('wood', "Assets/wood.png");
-    AngryMexicans.game.load.image('wood-break', "Assets/wood-break.png");
-    AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
-    AngryMexicans.game.load.image('woodType2-break', "Assets/woodType2-break.png");
-    AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
-    AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
-    AngryMexicans.game.load.image('glass', "Assets/glass.png");
-    AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
-    AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
-    AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
-    AngryMexicans.game.load.image('rockRectangle', "Assets/rockRectangle.png")
-    AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
-    AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
-    AngryMexicans.game.load.image('gun', '/Assets/gun.png');
-    AngryMexicans.game.load.image('stand', '/Assets/stand.png');
-    AngryMexicans.game.load.image('button', '/Assets/button.jpg')
+    // AngryMexicans.game.load.image('trump', "Assets/trump.png");
+    // AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
+    // AngryMexicans.game.load.image('mexican2', "Assets/mexican2.png");
+    // AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
+    // AngryMexicans.game.load.image('wood', "Assets/wood.png");
+    // AngryMexicans.game.load.image('wood-break', "Assets/wood-break.png");
+    // AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
+    // AngryMexicans.game.load.image('woodType2-break', "Assets/woodType2-break.png");
+    // AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
+    // AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
+    // AngryMexicans.game.load.image('glass', "Assets/glass.png");
+    // AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
+    // AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
+    // AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
+    // AngryMexicans.game.load.image('rockRectangle', "Assets/rockRectangle.png")
+    // AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
+    // AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
+    // AngryMexicans.game.load.image('gun', '/Assets/gun.png');
+    // AngryMexicans.game.load.image('stand', '/Assets/stand.png');
+    // AngryMexicans.game.load.image('button', '/Assets/button.jpg')
     AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
 
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
@@ -121,10 +122,10 @@ var create = function() {
     createEntity();
 
     // Create an object representing our gun
-    AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'gun');
+    AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'assets', 'gun.png');
     // Set the pivot point to the center of the gun
     AngryMexicans.gun.anchor.setTo(0.5, 0.5);
-    AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'stand');
+    AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'assets', 'stand.png');
 
 }
 
@@ -142,6 +143,9 @@ var update = function() {
     });
     AngryMexicans.enemies.forEach(function(enemy) {
         enemy.update();
+    });
+    AngryMexicans.entityGroup.forEachAlive(function(entity) {
+        entity.father.update();
     });
 
     //bullets rotation
@@ -204,11 +208,11 @@ var createEntity = function() {
         height: 204,
         rotation: Math.PI / 2
     }));
-    AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 200 - 11 - 80, {
-        width: 21,
-        height: 204,
-        rotation: 0
-    }));
+    // AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 204 - 11 - 84, {
+    //     width: 21,
+    //     height: 204,
+    //     rotation: 0
+    // }));
 
 
 }

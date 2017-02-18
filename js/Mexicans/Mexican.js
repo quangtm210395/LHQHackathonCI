@@ -2,10 +2,12 @@ class Mexican{
     constructor(x, y, spriteName, configs) {
         this.sprite = AngryMexicans.playerGroup.create(
             x, y,
-            spriteName,
+             "assets",
+            spriteName + ".png",
             configs
         );
         this.configs = configs;
+        this.sprite.body.mass = AngryMexicans.configs.MASS;
 
         // this.sprite.body.debug = true;
         this.sprite.body.setCircle(80, 10, 10, 0);

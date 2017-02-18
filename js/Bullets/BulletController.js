@@ -3,12 +3,14 @@ class BulletController {
         this.sprite = AngryMexicans.bulletGroup.create(
             position.x,
             position.y,
-            spriteName
+             "assets",
+            spriteName + ".png"
         );
 
         // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(34, 54, 2, 3);
         this.sprite.father = this;
+        this.sprite.body.mass = AngryMexicans.configs.MASS;
 
         this.sprite.body.collideWorldBounds = false;
         this.sprite.checkWorldBounds = true;
@@ -29,7 +31,7 @@ class BulletController {
         // Shoot it in the right direction
         this.sprite.body.velocity.x = Math.cos(this.sprite.body.rotation - Math.PI / 2) * this.sprite.bulletSpeed;
         this.sprite.body.velocity.y = Math.sin(this.sprite.body.rotation - Math.PI / 2) * this.sprite.bulletSpeed;
-        console.log(this.sprite.body.y);
+
     }
 
     outOfBounds() {
@@ -42,10 +44,16 @@ class BulletController {
     bulletHit(bullet, enemy) {
         getExplosion(bullet.sprite.x, bullet.sprite.y);
         bullet.sprite.kill();
-        bulletcheckkilled = true;
         bullet.sprite.body.removeFromWorld();
-    }
+        bulletcheckkilled = true;
 
+        var v = AngryMexicans.configs.bulletSpeed;
+        enemy.sprite.damage(bullet.sprite.body.mass * v*v
+            / (4 * enemy.sprite.body.mass * AngryMexicans.configs.K));
+            console.log( 'bullet damg: ' + bullet.sprite.body.mass * v*v
+                / (4 * enemy.sprite.body.mass * AngryMexicans.configs.K));
+            console.log( 'health: ' + enemy.sprite.health);
+    }
 
     getExplosion(x, y) {
         var explosion = AngryMexicans.explosionGroup.getFirstDead();

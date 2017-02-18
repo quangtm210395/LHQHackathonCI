@@ -2,10 +2,13 @@ class Trump {
     constructor(x, y, spriteName, configs) {
         this.sprite = AngryMexicans.enemyGroup.create(
             x, y,
-            spriteName,
+             "assets",
+            spriteName + ".png",
             configs
         );
         this.configs = configs;
+        this.sprite.body.mass = AngryMexicans.configs.MASS;
+        this.sprite.health = 1000;
         // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(50, 90, 5, 5);
         this.sprite.body.clearShapes();
