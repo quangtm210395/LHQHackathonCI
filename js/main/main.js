@@ -1,3 +1,4 @@
+var bulletcheckkilled = true;
 var AngryMexicans = {};
 AngryMexicans.configs = {
     minWidth : 640,
@@ -44,10 +45,11 @@ var preload = function() {
     AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
     AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
     AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
+    AngryMexicans.game.load.image('rockRectangle',"Assets/rockRectangle.png")
     AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
     AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
     AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
-
+    AngryMexicans.game.load.image('button', '/Assets/button.jpg')
     AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
 
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
@@ -96,6 +98,9 @@ var create = function() {
     AngryMexicans.players = [];
     AngryMexicans.entities = [];
 
+    //Button
+    //AngryMexicans.button = AngryMexicans.game.add.button(AngryMexicans.game.world.centerX - 95, 400, callback, 'button', this, 2, 1, 0);
+
     AngryMexicans.enemies.push(
         new Trump(
             1100,
@@ -117,12 +122,14 @@ var create = function() {
     );
 
     // create entity
-    AngryMexicans.entities.push(new EntityController(1090, AngryMexicans.configs.gameHeight-205, 'wood', {width: 22, height : 205}));
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500, AngryMexicans.configs.gameHeight-100-202, {width: 21, height : 204, rotation : Math.PI/2}));
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500, AngryMexicans.configs.gameHeight-100, {width: 21, height : 204, rotation : Math.PI/2}));
 
-    AngryMexicans.entities.push(new EntityController(1250, AngryMexicans.configs.gameHeight-205, 'wood', {width: 22, height : 205}));
 }
 
 // update game state each frame
+
+
 var update = function() {
 
     //set gun angle to Mouse Pointer
