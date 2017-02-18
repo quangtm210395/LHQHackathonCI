@@ -36,6 +36,7 @@ var preload = function() {
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
 
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
+    AngryMexicans.game.load.image('bigwall', 'Assets/Wall.png');
     // AngryMexicans.game.load.image('trump', "Assets/trump.png");
     // AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
     // AngryMexicans.game.load.image('mexican2', "Assets/mexican2.png");
@@ -120,6 +121,8 @@ var create = function() {
     );
 
     createEntity();
+
+
 
     // Create an object representing our gun
     AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'assets', 'gun.png');
@@ -208,11 +211,22 @@ var createEntity = function() {
         height: 204,
         rotation: Math.PI / 2
     }));
-    // AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 204 - 11 - 84, {
+    // AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37, AngryMexicans.configs.gameHeight-37, {
     //     width: 21,
     //     height: 204,
     //     rotation: 0
     // }));
+    // AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 - 75, AngryMexicans.configs.gameHeight-37, {
+    //     width: 21,
+    //     height: 204,
+    //     rotation: 0
+    // }));
+
+    AngryMexicans.entities.push(new WallController(AngryMexicans.configs.gameWidth - 490 - 200, AngryMexicans.configs.gameHeight-214, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
 
 
 }
