@@ -22,12 +22,13 @@ class Mexican{
     }
 
     update() {
-
         this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
         if(AngryMexicans.game.input.activePointer.isDown &&
             AngryMexicans.bulletCheckKilled == true){
               AngryMexicans.bulletCheckKilled = false;
+              if (AngryMexicans.BULLETS > 1)
               this.fire();
+              AngryMexicans.BULLETS--;
               this.timeSinceLastFire = 0;
         }
 
