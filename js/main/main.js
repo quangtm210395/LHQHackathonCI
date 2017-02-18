@@ -36,26 +36,6 @@ var preload = function() {
     AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
 
     AngryMexicans.game.load.image('background', 'Assets/map4.png');
-    // AngryMexicans.game.load.image('trump', "Assets/trump.png");
-    // AngryMexicans.game.load.image('mexican1', "Assets/mexican1.png");
-    // AngryMexicans.game.load.image('mexican2', "Assets/mexican2.png");
-    // AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
-    // AngryMexicans.game.load.image('wood', "Assets/wood.png");
-    // AngryMexicans.game.load.image('wood-break', "Assets/wood-break.png");
-    // AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
-    // AngryMexicans.game.load.image('woodType2-break', "Assets/woodType2-break.png");
-    // AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
-    // AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
-    // AngryMexicans.game.load.image('glass', "Assets/glass.png");
-    // AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
-    // AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
-    // AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
-    // AngryMexicans.game.load.image('rockRectangle', "Assets/rockRectangle.png")
-    // AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
-    // AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
-    // AngryMexicans.game.load.image('gun', '/Assets/gun.png');
-    // AngryMexicans.game.load.image('stand', '/Assets/stand.png');
-    // AngryMexicans.game.load.image('button', '/Assets/button.jpg')
     AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
 
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
@@ -65,6 +45,10 @@ var preload = function() {
 var create = function() {
     AngryMexicans.game.physics.startSystem(Phaser.Physics.P2JS);
     AngryMexicans.keyboard = AngryMexicans.game.input.keyboard;
+
+    //
+    AngryMexicans.BULLETS = 4;
+    AngryMexicans.HEALTH;
 
     //  Turn on impact events for the world, without this we get no collision callbacks
     AngryMexicans.game.physics.p2.setImpactEvents(true);
@@ -144,6 +128,16 @@ var create = function() {
 
 
 var update = function() {
+
+    if(AngryMexicans.BULLETS <= 0 && AngryMexicans.HEALTH > 0){
+        AngryMexicans.game.add.text(500, 200, 'GAME OVER', {font : "50px Arial", fill : "#ecf0f1"});
+        setTimeout(function(){
+          location.reload();
+        }, 2000);
+    }
+     if (AngryMexicans.HEALTH <= 0) {
+        AngryMexicans.game.add.text(500, 200, 'YOU WIN', {font : "50px Arial", fill : "#ecf0f1"});
+    }
 
     //set gun angle to Mouse Pointer
     AngryMexicans.gun.rotation = AngryMexicans.game.physics.arcade.angleToPointer(AngryMexicans.gun);
@@ -253,5 +247,5 @@ var createEntity = function() {
 // before camera render (mostly for debug)
 var render = function() {
 
-  // AngryMexicans.game.debug.text("abc", 200, 200);
+  AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max( AngryMexicans.BULLETS-1, 0)), 100, 100, "#fff" , "30px Arial" );
 }

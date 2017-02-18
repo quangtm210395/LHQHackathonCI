@@ -19,6 +19,7 @@ class Trump {
     }
 
     update() {
+        AngryMexicans.HEALTH = this.sprite.health;
 
         this.sprite.body.setZeroVelocity();
         if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {
