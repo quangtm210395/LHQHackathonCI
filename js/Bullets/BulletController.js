@@ -38,14 +38,14 @@ class BulletController {
         getExplosion(this.sprite.x, this.sprite.y);
         this.sprite.kill();
         this.sprite.body.removeFromWorld();
-        bulletcheckkilled = true;
+        AngryMexicans.bulletcheckkilled = true;
     }
 
     bulletHit(bullet, enemy) {
         getExplosion(bullet.sprite.x, bullet.sprite.y);
         bullet.sprite.kill();
         bullet.sprite.body.removeFromWorld();
-        bulletcheckkilled = true;
+        AngryMexicans.bulletcheckkilled = true;
 
         var v = AngryMexicans.configs.bulletSpeed;
         enemy.sprite.damage(bullet.sprite.body.mass * v*v
