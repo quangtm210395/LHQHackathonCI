@@ -6,6 +6,7 @@ class Trump {
             configs
         );
         this.configs = configs;
+        // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(50, 90, 5, 5);
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);

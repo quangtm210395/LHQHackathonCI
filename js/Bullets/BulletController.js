@@ -6,6 +6,7 @@ class BulletController {
             spriteName
         );
 
+        // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(34, 54, 2, 3);
         this.sprite.father = this;
 

@@ -8,6 +8,7 @@ class EntityController {
 
         this.configs = configs;
 
+        // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(configs.width, configs.height);
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);

@@ -6,6 +6,8 @@ class Mexican{
             configs
         );
         this.configs = configs;
+
+        // this.sprite.body.debug = true;
         this.sprite.body.setCircle(80, 10, 10, 0);
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
@@ -14,6 +16,7 @@ class Mexican{
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
+
     }
 
     update() {
