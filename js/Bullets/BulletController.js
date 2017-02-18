@@ -20,6 +20,11 @@ class BulletController {
         // this.sprite.body.loadPolygon('spritePhysics', spriteName);
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.bulletCollisionGroup);
+        this.sprite.body.collides([AngryMexicans.wallCollisionGroup],function(bullet, wall){
+          bullet.sprite.kill();
+          getExplosion(bullet.sprite.x, bullet.sprite.y);
+          AngryMexicans.bulletCheckKilled = true;
+        });
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
 
         this.sprite.bulletSpeed = AngryMexicans.configs.bulletSpeed;

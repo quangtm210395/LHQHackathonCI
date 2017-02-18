@@ -52,7 +52,7 @@ var create = function() {
 
     //  Turn on impact events for the world, without this we get no collision callbacks
     AngryMexicans.game.physics.p2.setImpactEvents(true);
-    AngryMexicans.game.physics.p2.restitution = 0.5;
+    AngryMexicans.game.physics.p2.restitution = 0.8;
     AngryMexicans.game.physics.p2.updateBoundsCollisionGroup();
 
     //add map
@@ -65,13 +65,14 @@ var create = function() {
     AngryMexicans.bulletCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
     AngryMexicans.entityCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
     AngryMexicans.enemyCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
+    AngryMexicans.wallCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
 
     //add phisicsGroups
     AngryMexicans.enemyGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
     AngryMexicans.playerGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
     AngryMexicans.bulletGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
     AngryMexicans.entityGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
-
+    AngryMexicans.wallGroup = AngryMexicans.game.add.physicsGroup();
     AngryMexicans.explosionGroup = AngryMexicans.game.add.group();
 
     //add GRAVITY to game
@@ -81,13 +82,14 @@ var create = function() {
     AngryMexicans.enemies = [];
     AngryMexicans.players = [];
     AngryMexicans.entities = [];
+    AngryMexicans.walls = [];
 
     //Button
     //AngryMexicans.button = AngryMexicans.game.add.button(AngryMexicans.game.world.centerX - 95, 400, callback, 'button', this, 2, 1, 0);
 
     AngryMexicans.enemies.push(
         new Trump(
-            AngryMexicans.configs.gameWidth - 400,
+            AngryMexicans.configs.gameWidth - 400 + 200,
             AngryMexicans.configs.gameHeight - 75,
             'trump', {}
         )
@@ -103,7 +105,14 @@ var create = function() {
         )
     );
 
+    AngryMexicans.walls.push(new WallController(AngryMexicans.configs.gameWidth - 490 - 200, AngryMexicans.configs.gameHeight-157, "wall", {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
     createEntity();
+
+
 
     // Create an object representing our gun
     AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'assets', 'gun.png');
@@ -149,6 +158,7 @@ var update = function() {
         bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI / 2;
     }, this);
 
+
 }
 
 var getExplosion = function(x, y) {
@@ -189,26 +199,47 @@ var getExplosion = function(x, y) {
 
 var createEntity = function() {
     // create entity
-    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 100, {
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 320 + 200, AngryMexicans.configs.gameHeight - 100, {
         width: 21,
         height: 204,
         rotation: 0
     }));
-    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 490, AngryMexicans.configs.gameHeight - 100, {
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 490 + 200, AngryMexicans.configs.gameHeight - 100, {
         width: 21,
         height: 204,
         rotation: 0
     }));
-    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500 + 100, AngryMexicans.configs.gameHeight - 200 - 10, {
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 200 - 10, {
         width: 21,
         height: 204,
         rotation: Math.PI / 2
     }));
-    // AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 204 - 11 - 84, {
-    //     width: 21,
-    //     height: 204,
-    //     rotation: 0
-    // }));
+    AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200, AngryMexicans.configs.gameHeight-37, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+
+    AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200 + 180 + 80, AngryMexicans.configs.gameHeight-37, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320 + 200 - 20, AngryMexicans.configs.gameHeight - 100 - 210, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 490 + 200 + 20, AngryMexicans.configs.gameHeight - 100 - 210, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 100 - 210 - 80, {
+        width: 21,
+        height: 204,
+        rotation: Math.PI / 2
+    }));
 
 
 }

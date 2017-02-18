@@ -8,7 +8,7 @@ class Trump {
         );
         this.configs = configs;
         this.sprite.body.mass = AngryMexicans.configs.MASS;
-        this.sprite.health = 1000;
+        this.sprite.health = 100;
         // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(50, 90, 5, 5);
         this.sprite.body.clearShapes();
