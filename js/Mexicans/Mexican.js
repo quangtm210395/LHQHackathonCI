@@ -25,7 +25,8 @@ class Mexican{
 
         this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
         if(AngryMexicans.game.input.activePointer.isDown &&
-            this.timeSinceLastFire > this.configs.cooldown){
+            AngryMexicans.bulletCheckKilled == true){
+              AngryMexicans.bulletCheckKilled = false;
               this.fire();
               this.timeSinceLastFire = 0;
         }

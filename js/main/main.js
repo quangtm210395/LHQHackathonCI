@@ -1,4 +1,4 @@
-var bulletcheckkilled = true;
+
 var AngryMexicans = {};
 AngryMexicans.configs = {
     minWidth: 640,
@@ -126,6 +126,8 @@ var create = function() {
     // Set the pivot point to the center of the gun
     AngryMexicans.gun.anchor.setTo(0.5, 0.5);
     AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'assets', 'stand.png');
+
+    AngryMexicans.bulletCheckKilled = true;
 
 }
 
