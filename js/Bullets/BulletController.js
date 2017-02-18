@@ -1,5 +1,5 @@
 class BulletController {
-    constructor(position, spriteName) {
+    constructor(position, spriteName, shooter) {
         this.sprite = AngryMexicans.bulletGroup.create(
             position.x,
             position.y,

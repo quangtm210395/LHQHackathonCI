@@ -1,14 +1,14 @@
 var bulletcheckkilled = true;
 var AngryMexicans = {};
 AngryMexicans.configs = {
-    minWidth : 640,
-    minHeight : 360,
-    gameWidth : 1280,
-    gameHeight : 720,
+    minWidth: 640,
+    minHeight: 360,
+    gameWidth: 1280,
+    gameHeight: 720,
     mapSpeed: 3,
-    bulletSpeed : 1500,
-    bulletStrength : 1,
-    GRAVITY : 2000
+    bulletSpeed: 1500,
+    bulletStrength: 1,
+    GRAVITY: 2000
 };
 
 window.onload = function() {
@@ -41,21 +41,25 @@ var preload = function() {
     AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
     AngryMexicans.game.load.image('wood', "Assets/wood.png");
     AngryMexicans.game.load.image('wood-break', "Assets/wood-break.png");
+    AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
+    AngryMexicans.game.load.image('woodType2-break', "Assets/woodType2-break.png");
+    AngryMexicans.game.load.image('mexican3', "Assets/mexican3.png");
+    AngryMexicans.game.load.image('woodType2', "Assets/woodType2.png");
     AngryMexicans.game.load.image('glass', "Assets/glass.png");
     AngryMexicans.game.load.image('glass-break', "Assets/glass-break.png");
     AngryMexicans.game.load.image('rockCircle', "Assets/rockCircle.png");
     AngryMexicans.game.load.image('rockCircle-break', "Assets/rockCircle-break.png");
-    AngryMexicans.game.load.image('rockRectangle',"Assets/rockRectangle.png")
+    AngryMexicans.game.load.image('rockRectangle', "Assets/rockRectangle.png")
     AngryMexicans.game.load.image('bullet', "Assets/bullet.png");
     AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
-    AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
+    AngryMexicans.game.load.image('gun', '/Assets/gun.png');
+    AngryMexicans.game.load.image('stand', '/Assets/stand.png');
     AngryMexicans.game.load.image('button', '/Assets/button.jpg')
     AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
 
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
 
 }
-//Sua
 // initialize the game
 var create = function() {
     AngryMexicans.game.physics.startSystem(Phaser.Physics.P2JS);
@@ -68,8 +72,8 @@ var create = function() {
 
     //add map
     AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0,
-      AngryMexicans.configs.gameWidth,
-      AngryMexicans.configs.gameHeight, 'background');
+        AngryMexicans.configs.gameWidth,
+        AngryMexicans.configs.gameHeight, 'background');
 
     //add collisionGroup
     AngryMexicans.playerCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
@@ -88,11 +92,6 @@ var create = function() {
     //add GRAVITY to game
     AngryMexicans.game.physics.p2.gravity.y = AngryMexicans.configs.GRAVITY;
 
-    // Create an object representing our gun
-    AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'gun');
-    // Set the pivot point to the center of the gun
-    AngryMexicans.gun.anchor.setTo(0.5, 0.5);
-
     //groups
     AngryMexicans.enemies = [];
     AngryMexicans.players = [];
@@ -103,27 +102,29 @@ var create = function() {
 
     AngryMexicans.enemies.push(
         new Trump(
-            1100,
-            AngryMexicans.configs.gameHeight - 152,
-            'trump',
-            {}
+            AngryMexicans.configs.gameWidth - 400,
+            AngryMexicans.configs.gameHeight - 75,
+            'trump', {}
         )
     );
 
     AngryMexicans.players.push(
         new Mexican(
-            150,
-            AngryMexicans.configs.gameHeight - 150,
-            'mexican1',
-            {
-                cooldown : 0.15
+            100,
+            AngryMexicans.configs.gameHeight - 50,
+            'mexican2', {
+                cooldown: 0.15
             }
         )
     );
 
-    // create entity
-    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500, AngryMexicans.configs.gameHeight-100-202, {width: 21, height : 204, rotation : Math.PI/2}));
-    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500, AngryMexicans.configs.gameHeight-100, {width: 21, height : 204, rotation : Math.PI/2}));
+    createEntity();
+
+    // Create an object representing our gun
+    AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'gun');
+    // Set the pivot point to the center of the gun
+    AngryMexicans.gun.anchor.setTo(0.5, 0.5);
+    AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'stand');
 
 }
 
@@ -145,8 +146,8 @@ var update = function() {
 
     //bullets rotation
     AngryMexicans.bulletGroup.forEachAlive(function(bullet) {
-            bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI/2;
-       }, this);
+        bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI / 2;
+    }, this);
 
 }
 
@@ -186,7 +187,34 @@ var getExplosion = function(x, y) {
     return explosion;
 }
 
+var createEntity = function() {
+    // create entity
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 100, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 490, AngryMexicans.configs.gameHeight - 100, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500 + 100, AngryMexicans.configs.gameHeight - 200 - 10, {
+        width: 21,
+        height: 204,
+        rotation: Math.PI / 2
+    }));
+    AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320, AngryMexicans.configs.gameHeight - 200 - 11 - 80, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+
+
+}
+
 // before camera render (mostly for debug)
 var render = function() {
 
+  // AngryMexicans.game.debug.text("abc", 200, 200);
 }
