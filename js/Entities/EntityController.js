@@ -11,7 +11,7 @@ class EntityController {
         this.sprite.father = this;
         this.spriteName = spriteName;
         this.sprite.body.mass = AngryMexicans.configs.MASS;
-        this.sprite.health = 500;
+        this.sprite.health = 150;
 
         // this.sprite.body.debug = true;
         // this.sprite.body.setRectangle(configs.width, configs.height);
@@ -28,7 +28,7 @@ class EntityController {
     }
 
     update(){
-        if(this.sprite.health < 250 && this.sprite.alive){
+        if(this.sprite.health < 100 && this.sprite.alive){
             this.sprite.frameName = this.spriteName + '-break.png';
             // this.sprite.body.loadPolygon('spritePhysics', this.spriteName + '-break');
         }

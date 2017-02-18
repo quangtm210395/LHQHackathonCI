@@ -20,6 +20,11 @@ class BulletController {
         // this.sprite.body.loadPolygon('spritePhysics', spriteName);
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.bulletCollisionGroup);
+        this.sprite.body.collides([AngryMexicans.wallCollisionGroup],function(bullet, wall){
+          bullet.sprite.kill();
+          getExplosion(bullet.sprite.x, bullet.sprite.y);
+          AngryMexicans.bulletCheckKilled = true;
+        });
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
 
         this.sprite.bulletSpeed = AngryMexicans.configs.bulletSpeed;
@@ -38,14 +43,14 @@ class BulletController {
         getExplosion(this.sprite.x, this.sprite.y);
         this.sprite.kill();
         this.sprite.body.removeFromWorld();
-        AngryMexicans.bulletcheckkilled = true;
+        AngryMexicans.bulletCheckKilled = true;
     }
 
     bulletHit(bullet, enemy) {
         getExplosion(bullet.sprite.x, bullet.sprite.y);
         bullet.sprite.kill();
         bullet.sprite.body.removeFromWorld();
-        AngryMexicans.bulletcheckkilled = true;
+        AngryMexicans.bulletCheckKilled = true;
 
         var v = AngryMexicans.configs.bulletSpeed;
         enemy.sprite.damage(bullet.sprite.body.mass * v*v
