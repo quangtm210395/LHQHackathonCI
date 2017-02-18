@@ -18,7 +18,7 @@ class WallController{
       this.sprite.body.clearShapes();
       this.sprite.body.loadPolygon('spritePhysics', spriteName);
       this.sprite.body.setCollisionGroup(AngryMexicans.wallCollisionGroup);
-      this.sprite.body.collides([AngryMexicans.bulletCollisionGroup]);
+      this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.entityCollisionGroup]);
       this.sprite.body.kinematic = true;
 
     }

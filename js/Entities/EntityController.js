@@ -23,7 +23,7 @@ class EntityController {
         this.sprite.body.setCollisionGroup(AngryMexicans.entityCollisionGroup);
 
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup], this.onCollides);
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.entityCollisionGroup]);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.wallCollisionGroup]);
 
     }
 
