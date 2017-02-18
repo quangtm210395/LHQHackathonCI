@@ -28,22 +28,23 @@ class BulletController {
         // Shoot it in the right direction
         this.sprite.body.velocity.x = Math.cos(this.sprite.body.rotation - Math.PI / 2) * this.sprite.bulletSpeed;
         this.sprite.body.velocity.y = Math.sin(this.sprite.body.rotation - Math.PI / 2) * this.sprite.bulletSpeed;
-
+        console.log(this.sprite.body.y);
     }
 
     outOfBounds() {
         getExplosion(this.sprite.x, this.sprite.y);
-
         this.sprite.kill();
         this.sprite.body.removeFromWorld();
+        bulletcheckkilled = true;
     }
 
     bulletHit(bullet, enemy) {
         getExplosion(bullet.sprite.x, bullet.sprite.y);
-
         bullet.sprite.kill();
+        bulletcheckkilled = true;
         bullet.sprite.body.removeFromWorld();
     }
+
 
     getExplosion(x, y) {
         var explosion = AngryMexicans.explosionGroup.getFirstDead();
