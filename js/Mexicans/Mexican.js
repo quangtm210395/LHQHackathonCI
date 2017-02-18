@@ -10,12 +10,13 @@ class Mexican{
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
 
-        this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.timeSinceLastFire = 0;
+        //collides
+        this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
     }
 
     update() {
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
 
         this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
         if(AngryMexicans.game.input.activePointer.isDown &&
@@ -40,21 +41,12 @@ class Mexican{
     }
 
     fire(){
-        var bullet = new BulletController(
+        new BulletController(
             this.sprite.position,
             'bullet-upgraded'
-        ).sprite;
-        bullet.reset(AngryMexicans.gun.x, AngryMexicans.gun.y);
-        bullet.body.rotation = AngryMexicans.gun.rotation + Math.PI/2;
-        bullet.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
-
-        // Shoot it in the right direction
-        bullet.body.velocity.x = Math.cos(bullet.body.rotation - Math.PI/2) * bullet.bulletSpeed;
-        bullet.body.velocity.y = Math.sin(bullet.body.rotation - Math.PI/2) * bullet.bulletSpeed;
-
+        )
     }
 
-    bulletHit(bullet, trump) {
-        bullet.sprite.kill();
-    }
+
+
 }

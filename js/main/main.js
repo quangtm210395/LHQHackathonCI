@@ -48,6 +48,8 @@ var preload = function() {
     AngryMexicans.game.load.image('bullet-upgraded', "Assets/bullet-upgraded.png");
     AngryMexicans.game.load.image('gun', '/Assets/gfx/bullet.png');
 
+    AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
+
     AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
 
 }
@@ -79,12 +81,13 @@ var create = function() {
     AngryMexicans.bulletGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
     AngryMexicans.entityGroup = AngryMexicans.game.add.physicsGroup(Phaser.Physics.P2JS);
 
+    AngryMexicans.explosionGroup = AngryMexicans.game.add.group();
+
     //add GRAVITY to game
     AngryMexicans.game.physics.p2.gravity.y = AngryMexicans.configs.GRAVITY;
 
     // Create an object representing our gun
-    AngryMexicans.gun = this.game.add.sprite(200, this.game.height - 64, 'gun');
-
+    AngryMexicans.gun = AngryMexicans.game.add.sprite(200, AngryMexicans.game.height - 64, 'gun');
     // Set the pivot point to the center of the gun
     AngryMexicans.gun.anchor.setTo(0.5, 0.5);
 
@@ -132,15 +135,48 @@ var update = function() {
     AngryMexicans.enemies.forEach(function(enemy) {
         enemy.update();
     });
-    AngryMexicans.entities.forEach(function(entity) {
-        entity.update();
-    });
 
     //bullets rotation
     AngryMexicans.bulletGroup.forEachAlive(function(bullet) {
             bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI/2;
        }, this);
 
+}
+
+var getExplosion = function(x, y) {
+    var explosion = AngryMexicans.explosionGroup.getFirstDead();
+
+    // If there aren't any available, create a new one
+    if (explosion === null) {
+        explosion = AngryMexicans.game.add.sprite(0, 0, 'explosion');
+        explosion.anchor.setTo(0.5, 0.5);
+
+        // Add an animation for the explosion that kills the sprite when the
+        // animation is complete
+        var animation = explosion.animations.add('boom', [0, 1, 2, 3], 60, false);
+        animation.killOnComplete = true;
+
+        // Add the explosion sprite to the group
+        AngryMexicans.explosionGroup.add(explosion);
+    }
+
+    // Revive the explosion (set it's alive property to true)
+    // You can also define a onRevived event handler in your explosion objects
+    // to do stuff when they are revived.
+    explosion.revive();
+
+    // Move the explosion to the given coordinates
+    explosion.x = x;
+    explosion.y = y;
+
+    // Set rotation of the explosion at random for a little variety
+    explosion.angle = AngryMexicans.game.rnd.integerInRange(0, 360);
+
+    // Play the animation
+    explosion.animations.play('boom');
+
+    // Return the explosion itself in case we want to do anything else with it
+    return explosion;
 }
 
 // before camera render (mostly for debug)

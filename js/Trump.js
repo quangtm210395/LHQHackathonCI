@@ -9,11 +9,12 @@ class Trump {
         this.sprite.body.setRectangle(50, 90, 5, 5);
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
+        //collide
         this.sprite.body.setCollisionGroup(AngryMexicans.enemyCollisionGroup);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup]);
     }
 
     update() {
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup]);
 
         this.sprite.body.setZeroVelocity();
         if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {
