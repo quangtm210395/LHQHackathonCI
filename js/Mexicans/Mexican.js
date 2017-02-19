@@ -7,6 +7,7 @@ class Mexican{
             configs
         );
         this.configs = configs;
+        this.sprite.father = this;
         this.sprite.body.mass = AngryMexicans.configs.MASS;
 
         // this.sprite.body.debug = true;
@@ -23,10 +24,9 @@ class Mexican{
 
     update() {
       //AngryMexicans.powerBar.width = 0;
-      if(AngryMexicans.game.input.mousePointer.isDown){
+      if(AngryMexicans.game.input.mousePointer.isDown && AngryMexicans.OVER == false){
           this.timeSinceFire += AngryMexicans.game.time.physicsElapsed;
           AngryMexicans.powerBar.width = Math.abs(420* Math.sin(this.timeSinceFire * Math.PI * 2 / 5));
-          console.log('luc : ' + Math.sin(this.timeSinceFire * Math.PI * 2));
 
       }
         // this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;

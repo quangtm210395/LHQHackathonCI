@@ -7,6 +7,8 @@ class Trump {
             configs
         );
         this.configs = configs;
+        this.sprite.father = this;
+
         this.sprite.body.mass = AngryMexicans.configs.MASS;
         this.sprite.health = 100;
         // this.sprite.body.debug = true;
@@ -15,7 +17,7 @@ class Trump {
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
         //collide
         this.sprite.body.setCollisionGroup(AngryMexicans.enemyCollisionGroup);
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup], this.onCollides);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.wallCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup], this.onCollides);
     }
 
     onCollides() {

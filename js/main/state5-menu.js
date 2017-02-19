@@ -1,6 +1,12 @@
 var menuState = {
     create : function() {
       AngryMexicans.keyboard = AngryMexicans.game.input.keyboard;
+      //add map
+      // AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0,
+      //     AngryMexicans.configs.gameWidth,
+      //     AngryMexicans.configs.gameWidth,
+      //      'background');
+
       var nameLabel = AngryMexicans.game.add.text(200, 200, 'AngryMexicans Game',
       {font : '50px Arial', fill : '#fff'});
 

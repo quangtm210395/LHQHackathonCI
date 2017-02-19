@@ -27,19 +27,20 @@ class EntityController {
 
     }
 
-    update(){
-        if(this.sprite.health < 100 && this.sprite.alive){
+    update() {
+        if (this.sprite.health < 100 && this.sprite.alive) {
             this.sprite.frameName = this.spriteName + '-break.png';
             // this.sprite.body.loadPolygon('spritePhysics', this.spriteName + '-break');
         }
     }
 
     onCollides(entity, anotherSprite) {
-        var v = entity.sprite.body.velocity.y;
+        var v = Math.sqrt(Math.pow(entity.sprite.body.velocity.y, 2) + Math.pow(entity.sprite.body.velocity.x, 2));
         anotherSprite.sprite.damage(entity.sprite.body.mass * v * v /
             (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
-        // console.log('entity damg: ' + entity.sprite.body.mass * v * v /
-        //     (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
-        // console.log('health: ' + anotherSprite.sprite.health)
+
+        console.log('entity damg: ' + entity.sprite.body.mass * v * v /
+            (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
+        console.log('health: ' + anotherSprite.sprite.health)
     }
 }
