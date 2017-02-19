@@ -16,6 +16,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":45},
 	"sourceSize": {"w":20,"h":45}
 },
+"bulletType3.png":
+{
+	"frame": {"x":154,"y":2,"w":30,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":45},
+	"sourceSize": {"w":30,"h":45}
+},
 "glass-break.png":
 {
 	"frame": {"x":214,"y":102,"w":18,"h":200},
@@ -175,6 +183,6 @@
 	"format": "RGBA8888",
 	"size": {"w":512,"h":512},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:021c59e7b1c8720bc9e81716f6b766de:1/1$"
+	"smartupdate": "$TexturePacker:SmartUpdate:52c8d011a3a5e606a65e5867ddde8992:1/1$"
 }
 }

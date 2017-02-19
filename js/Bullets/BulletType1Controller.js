@@ -1,5 +1,5 @@
 class BulletType1Controller extends BulletController{
-  constructor(postition){
-    super(position, "bulletType1.png")
+  constructor(position, configs){
+    super(position, "bullet", configs);
   }
 }

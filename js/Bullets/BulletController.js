@@ -1,5 +1,5 @@
 class BulletController {
-    constructor(position, spriteName, /*shooter*/ configs) {
+    constructor(position, spriteName, configs) {
         this.sprite = AngryMexicans.bulletGroup.create(
             position.x,
             position.y,
@@ -31,7 +31,6 @@ class BulletController {
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup], this.onBulletHitTrump);
 
         this.sprite.bulletSpeed = this.configs.bulletSpeed;
-        this.sprite.bulletStrength = AngryMexicans.configs.bulletStrength;
 
         this.sprite.reset(AngryMexicans.gun.x, AngryMexicans.gun.y);
         this.sprite.body.rotation = AngryMexicans.gun.rotation + Math.PI / 2;
@@ -51,7 +50,7 @@ class BulletController {
     }
 
     onBulletHitEntity(bullet, entity) {
-        // AngryMexicans.audioTrumpHit.play();
+        AngryMexicans.audioCrash.play();
         map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
         bullet.sprite.kill();
         bullet.sprite.body.removeFromWorld();

@@ -97,10 +97,10 @@ var map1State = {
             font: "50px Arial",
             fill: "#ecf0f1"
         });
-        //console.log(AngryMexicans.HEALTH);
+        AngryMexicans.audioWonState.play();
         setTimeout(function() {
             AngryMexicans.game.state.start('menu');
-        }, 1000);
+        }, 4000);
     },
 
     loadLostState: function() {
@@ -108,24 +108,30 @@ var map1State = {
             font: "50px Arial",
             fill: "#ecf0f1"
         });
-        //console.log('game health: ' + AngryMexicans.HEALTH);
+        AngryMexicans.audioLostState.play();
         setTimeout(function() {
             AngryMexicans.game.state.start('menu');
-        }, 1000);
+        }, 4000);
     },
 
     update: function() {
         if (AngryMexicans.OVERBULLETKILLTRUMP) {
             map1State.loadWinState();
-        } else {
+            AngryMexicans.OVERBULLETKILLTRUMP = null;
+            console.log(1);
+        } else if (AngryMexicans.OVER){
             var moves = map1State.checkSpritesMove();
             //console.log(moves);
 
             if (moves == false && AngryMexicans.OVER) {
                 if (AngryMexicans.HEALTH <= 0) {
                     map1State.loadWinState();
+                    AngryMexicans.OVER = null;
+                    console.log(2);
                 } else {
                     map1State.loadLostState();
+                    AngryMexicans.OVER = null;
+                    console.log(3);
                 }
             }
         }
@@ -235,7 +241,7 @@ var map1State = {
 
     render: function() {
 
-        AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 100, "#fff", "30px Arial");
+        AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 200, "#fff", "30px Arial");
     }
 
 

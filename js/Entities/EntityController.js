@@ -34,13 +34,15 @@ class EntityController {
         }
     }
 
-    onCollides(entity, anotherSprite) {
+    onCollides(entity, trump) {
         var v = Math.sqrt(Math.pow(entity.sprite.body.velocity.y, 2) + Math.pow(entity.sprite.body.velocity.x, 2));
-        anotherSprite.sprite.damage(entity.sprite.body.mass * v * v /
-            (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
+        trump.sprite.damage(entity.sprite.body.mass * v * v /
+            (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+
+            if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
 
         // console.log('entity damg: ' + entity.sprite.body.mass * v * v /
-        //     (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
-        // console.log('health: ' + anotherSprite.sprite.health)
+        //     (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+        // console.log('health: ' + trump.sprite.health)
     }
 }

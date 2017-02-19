@@ -1,6 +1,5 @@
 var winState = {
     create: function() {
-        AngryMexicans.audioWonState = AngryMexicans.game.add.audio('audioWonState');
         AngryMexicans.game.sound.setDecodedCallback([AngryMexicans.audioWonState], winState.startSound, this);
         var nameLabel = AngryMexicans.game.add.text(200, 200, 'YOU WIN', {
             font: '50px Arial',

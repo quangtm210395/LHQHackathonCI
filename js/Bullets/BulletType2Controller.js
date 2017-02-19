@@ -1,9 +1,6 @@
 class BulletType2Controller extends BulletController{
-  constructor(postition){
-    super(position, "bulletType2.png")
+  constructor(position, configs){
+    super(position, "bullet-upgraded", configs);
   }
 
-  upgradefire(position){
-    
-  }
 }

@@ -169,6 +169,7 @@
             <filename>gun.png</filename>
             <filename>mexican1.png</filename>
             <filename>wall.png</filename>
+            <filename>bulletType3.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -13,7 +13,7 @@ class Mexican{
         this.sprite.body.clearShapes();
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
 
-        this.timeSinceLastFire = 0;
+        this.audio = AngryMexicans.audioGunType1;
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
@@ -22,13 +22,13 @@ class Mexican{
 
     update() {
       //AngryMexicans.powerBar.width = 0;
-      if(AngryMexicans.game.input.mousePointer.isDown && AngryMexicans.OVER == false){
+      if(AngryMexicans.game.input.mousePointer.isDown && AngryMexicans.OVER == false&& AngryMexicans.bulletCheckKilled == true){
           this.timeSinceFire += AngryMexicans.game.time.physicsElapsed;
           AngryMexicans.powerBar.width = Math.abs(420* Math.sin(this.timeSinceFire * Math.PI * 2 / 5));
 
       }
-        // this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
-      if(AngryMexicans.game.input.mousePointer.isUp &&  AngryMexicans.bulletCheckKilled == true && AngryMexicans.powerBar.width > 0) {
+
+      if(AngryMexicans.game.input.mousePointer.isUp && AngryMexicans.bulletCheckKilled == true && AngryMexicans.powerBar.width > 0) {
               AngryMexicans.bulletCheckKilled = false;
               if (AngryMexicans.BULLETS > 0)
               this.fire(AngryMexicans.powerBar.width/420);
@@ -59,7 +59,7 @@ class Mexican{
             'bullet-upgraded',
             {bulletSpeed: speed * AngryMexicans.configs.bulletMaxSpeed}
         );
-        AngryMexicans.audioGunType1.play();
+        this.audio.play();
     }
 
 
