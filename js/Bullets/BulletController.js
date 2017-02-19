@@ -1,5 +1,5 @@
 class BulletController {
-    constructor(position, spriteName, shooter) {
+    constructor(position, spriteName, /*shooter*/ configs) {
         this.sprite = AngryMexicans.bulletGroup.create(
             position.x,
             position.y,
@@ -8,6 +8,8 @@ class BulletController {
         );
 
         // this.sprite.body.debug = true;
+        console.log(configs)
+        this.configs = configs;
         this.sprite.body.setRectangle(34, 54, 2, 3);
         this.sprite.father = this;
         this.sprite.body.mass = AngryMexicans.configs.MASS;
@@ -27,7 +29,7 @@ class BulletController {
         });
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
 
-        this.sprite.bulletSpeed = AngryMexicans.configs.bulletSpeed;
+        this.sprite.bulletSpeed = this.configs.bulletSpeed;
         this.sprite.bulletStrength = AngryMexicans.configs.bulletStrength;
 
         this.sprite.reset(AngryMexicans.gun.x, AngryMexicans.gun.y);
@@ -51,7 +53,7 @@ class BulletController {
         bullet.sprite.kill();
         bullet.sprite.body.removeFromWorld();
         AngryMexicans.bulletCheckKilled = true;
-
+        AngryMexicans.audioTrumpHit.play();
         var v = AngryMexicans.configs.bulletSpeed;
         enemy.sprite.damage(bullet.sprite.body.mass * v*v
             / (4 * enemy.sprite.body.mass * AngryMexicans.configs.K));

@@ -39,6 +39,11 @@ var map2State = {
         AngryMexicans.entities = [];
         AngryMexicans.walls = [];
 
+        //powerBar
+        AngryMexicans.powerBar = AngryMexicans.game.add.sprite(100 , 50, 'powerbar');
+        AngryMexicans.borderbar = AngryMexicans.game.add.sprite(98, 48, 'borderbar');
+        AngryMexicans.powerBar.width =  0;
+        
         //Button
         //AngryMexicans.button = AngryMexicans.game.add.button(AngryMexicans.game.world.centerX - 95, 400, callback, 'button', this, 2, 1, 0);
 
@@ -79,19 +84,21 @@ var map2State = {
 
     update: function() {
       if (AngryMexicans.BULLETS <= 0 && AngryMexicans.HEALTH > 0) {
-          AngryMexicans.game.add.text(500, 200, 'GAME OVER', {
-              font: "50px Arial",
-              fill: "#ecf0f1"
-          });
+          // AngryMexicans.game.add.text(500, 200, 'GAME OVER', {
+          //     font: "50px Arial",
+          //     fill: "#ecf0f1"
+          // });
+          AngryMexicans.BULLETS = 4;
           setTimeout(function() {
               AngryMexicans.game.state.start('lost');
           }, 1000);
       }
       if (AngryMexicans.HEALTH <= 0) {
-          AngryMexicans.game.add.text(500, 200, 'YOU WIN', {
-              font: "50px Arial",
-              fill: "#ecf0f1"
-          });
+          // AngryMexicans.game.add.text(500, 200, 'YOU WIN', {
+          //     font: "50px Arial",
+          //     fill: "#ecf0f1"
+          // });
+          AngryMexicans.BULLETS = 4;
           setTimeout(function() {
               AngryMexicans.game.state.start('win');
           }, 1000);

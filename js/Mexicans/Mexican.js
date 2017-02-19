@@ -18,18 +18,26 @@ class Mexican{
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.playerCollisionGroup);
         this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup]);
-
+        this.timeSinceFire = 0;
     }
 
     update() {
-        this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
-        if(AngryMexicans.game.input.activePointer.isDown &&
-            AngryMexicans.bulletCheckKilled == true){
+      //AngryMexicans.powerBar.width = 0;
+      if(AngryMexicans.game.input.mousePointer.isDown){
+          this.timeSinceFire += AngryMexicans.game.time.physicsElapsed;
+          AngryMexicans.powerBar.width = Math.abs(420* Math.sin(this.timeSinceFire * Math.PI * 2 / 5));
+          console.log('luc : ' + Math.sin(this.timeSinceFire * Math.PI * 2));
+          //this.timeSinceSpawn = 0;
+
+      }
+        // this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
+      if(AngryMexicans.game.input.mousePointer.isUp &&  AngryMexicans.bulletCheckKilled == true && AngryMexicans.powerBar.width > 0) {
               AngryMexicans.bulletCheckKilled = false;
               if (AngryMexicans.BULLETS > 1)
-              this.fire();
+              this.fire(AngryMexicans.powerBar.width/420);
               AngryMexicans.BULLETS--;
               this.timeSinceLastFire = 0;
+              AngryMexicans.powerBar.width = 0;
         }
 
         this.sprite.body.setZeroVelocity();
@@ -47,11 +55,13 @@ class Mexican{
         }
     }
 
-    fire(){
+    fire(speed){
         new BulletController(
             this.sprite.position,
-            'bullet-upgraded'
-        )
+            'bullet-upgraded',
+            {bulletSpeed: speed * 2000}
+        );
+        AngryMexicans.audioGunType1.play();
     }
 
 

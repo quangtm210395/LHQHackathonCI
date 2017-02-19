@@ -1,6 +1,17 @@
 var map1State = {
     create: function() {
-        //
+        //setSound
+        AngryMexicans.audioGunType1 = AngryMexicans.game.add.audio('audioGunType1');
+        AngryMexicans.audioGunType2 = AngryMexicans.game.add.audio('audioGunType2');
+        AngryMexicans.audioTrumpHit = AngryMexicans.game.add.audio('audioTrumpHit');
+        AngryMexicans.audioUnlockStage = AngryMexicans.game.add.audio('audioUnlockStage');
+
+        AngryMexicans.game.sound.setDecodedCallback([AngryMexicans.audioGunType1,
+            AngryMexicans.audioGunType2,
+            AngryMexicans.audioTrumpHit,
+            AngryMexicans.audioUnlockStage
+          ], map1State.startSound, this);
+
         AngryMexicans.BULLETS = 4;
         AngryMexicans.HEALTH;
 
@@ -38,6 +49,11 @@ var map1State = {
         AngryMexicans.entities = [];
         AngryMexicans.walls = [];
 
+        //powerBar
+        AngryMexicans.powerBar = AngryMexicans.game.add.sprite(100 , 50, 'powerbar');
+        AngryMexicans.borderbar = AngryMexicans.game.add.sprite(98, 48, 'borderbar');
+        AngryMexicans.powerBar.width =  0;
+
         //Button
         //AngryMexicans.button = AngryMexicans.game.add.button(AngryMexicans.game.world.centerX - 95, 400, callback, 'button', this, 2, 1, 0);
 
@@ -74,23 +90,29 @@ var map1State = {
         AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'assets', 'stand.png');
 
         AngryMexicans.bulletCheckKilled = true;
+        // AngryMexicans.timeSinceSpawn = 0;
     },
 
     update: function() {
+
+
+
         if (AngryMexicans.BULLETS <= 0 && AngryMexicans.HEALTH > 0) {
-            AngryMexicans.game.add.text(500, 200, 'GAME OVER', {
-                font: "50px Arial",
-                fill: "#ecf0f1"
-            });
+            // AngryMexicans.game.add.text(500, 200, 'GAME OVER', {
+            //     font: "50px Arial",
+            //     fill: "#ecf0f1"
+            // });
+            console.log(AngryMexicans.HEALTH);
             setTimeout(function() {
                 AngryMexicans.game.state.start('lost');
             }, 1000);
         }
         if (AngryMexicans.HEALTH <= 0) {
-            AngryMexicans.game.add.text(500, 200, 'YOU WIN', {
-                font: "50px Arial",
-                fill: "#ecf0f1"
-            });
+            // AngryMexicans.game.add.text(500, 200, 'YOU WIN', {
+            //     font: "50px Arial",
+            //     fill: "#ecf0f1"
+            // });
+            console.log(AngryMexicans.HEALTH);
             setTimeout(function() {
                 AngryMexicans.game.state.start('win');
             }, 0);
@@ -203,5 +225,20 @@ var map1State = {
     render : function() {
 
       AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max( AngryMexicans.BULLETS-1, 0)), 100, 100, "#fff" , "30px Arial" );
+    },
+
+    startSound : function() {
+
+      AngryMexicans.audioGunType1.volume = 1;
+      AngryMexicans.audioGunType1.loop = false;
+      AngryMexicans.audioGunType2.volume = 1;
+      AngryMexicans.audioGunType2.loop = false;
+      AngryMexicans.audioTrumpHit.volume = 1;
+      AngryMexicans.audioTrumpHit.loop = false;
+      AngryMexicans.audioUnlockStage.volume = 1;
+      AngryMexicans.audioUnlockStage.loop = false;
+    
     }
+
+
 }

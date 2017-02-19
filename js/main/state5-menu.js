@@ -14,6 +14,7 @@ var menuState = {
       var keyTWO = AngryMexicans.keyboard.addKey(Phaser.Keyboard.TWO);
       keyTWO.onDown.addOnce(this.start2, this);
 
+
     },
 
     start : function() {
