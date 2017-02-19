@@ -3,7 +3,7 @@ class BulletController {
         this.sprite = AngryMexicans.bulletGroup.create(
             position.x,
             position.y,
-             "assets",
+            "assets",
             spriteName + ".png"
         );
 
@@ -22,12 +22,13 @@ class BulletController {
         // this.sprite.body.loadPolygon('spritePhysics', spriteName);
         //collides
         this.sprite.body.setCollisionGroup(AngryMexicans.bulletCollisionGroup);
-        this.sprite.body.collides([AngryMexicans.wallCollisionGroup],function(bullet, wall){
-          bullet.sprite.kill();
-          map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
-          AngryMexicans.bulletCheckKilled = true;
+        this.sprite.body.collides([AngryMexicans.wallCollisionGroup], function(bullet, wall) {
+            bullet.sprite.kill();
+            map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
+            AngryMexicans.bulletCheckKilled = true;
         });
-        this.sprite.body.collides([AngryMexicans.enemyCollisionGroup, AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.bulletHit);
+        this.sprite.body.collides([AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.onBulletHitEntity);
+        this.sprite.body.collides([AngryMexicans.enemyCollisionGroup], this.onBulletHitTrump);
 
         this.sprite.bulletSpeed = this.configs.bulletSpeed;
         this.sprite.bulletStrength = AngryMexicans.configs.bulletStrength;
@@ -46,20 +47,42 @@ class BulletController {
         this.sprite.kill();
         this.sprite.body.removeFromWorld();
         AngryMexicans.bulletCheckKilled = true;
+        if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
     }
 
-    bulletHit(bullet, enemy) {
+    onBulletHitEntity(bullet, entity) {
+        // AngryMexicans.audioTrumpHit.play();
         map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
         bullet.sprite.kill();
         bullet.sprite.body.removeFromWorld();
         AngryMexicans.bulletCheckKilled = true;
+        var v = AngryMexicans.configs.bulletMaxSpeed;
+        entity.sprite.damage(bullet.sprite.body.mass * v * v /
+            (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
+        // game over
+        if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+
+        console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
+            (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
+        console.log('entity health: ' + entity.sprite.health);
+    }
+
+    onBulletHitTrump(bullet, trump) {
         AngryMexicans.audioTrumpHit.play();
-        var v = AngryMexicans.configs.bulletSpeed;
-        enemy.sprite.damage(bullet.sprite.body.mass * v*v
-            / (4 * enemy.sprite.body.mass * AngryMexicans.configs.K));
-            console.log( 'bullet damg: ' + bullet.sprite.body.mass * v*v
-                / (4 * enemy.sprite.body.mass * AngryMexicans.configs.K));
-            console.log( 'health: ' + enemy.sprite.health);
+        map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
+        bullet.sprite.kill();
+        bullet.sprite.body.removeFromWorld();
+        AngryMexicans.bulletCheckKilled = true;
+        var v = AngryMexicans.configs.bulletMaxSpeed;
+        trump.sprite.damage(bullet.sprite.body.mass * v * v /
+            (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+        // game over
+        if (!trump.sprite.alive) AngryMexicans.OVERBULLETKILLTRUMP = true;
+        if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+
+        console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
+            (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+        console.log('trump health: ' + trump.sprite.health);
     }
 
     getExplosion(x, y) {

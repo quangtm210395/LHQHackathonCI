@@ -4,7 +4,7 @@ AngryMexicans.configs = {
     minHeight: 360,
     gameWidth: 1280,
     gameHeight: 720,
-    bulletSpeed: 1500,
+    bulletMaxSpeed: 2000,
     bulletStrength: 1,
     GRAVITY: 2000,
     MASS : 100,

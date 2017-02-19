@@ -15,7 +15,10 @@ class Trump {
         this.sprite.body.loadPolygon('spritePhysics', spriteName);
         //collide
         this.sprite.body.setCollisionGroup(AngryMexicans.enemyCollisionGroup);
-        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup]);
+        this.sprite.body.collides([AngryMexicans.bulletCollisionGroup, AngryMexicans.playerCollisionGroup, AngryMexicans.entityCollisionGroup], this.onCollides);
+    }
+
+    onCollides() {
     }
 
     update() {

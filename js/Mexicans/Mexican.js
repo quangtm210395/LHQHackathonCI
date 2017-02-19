@@ -27,16 +27,15 @@ class Mexican{
           this.timeSinceFire += AngryMexicans.game.time.physicsElapsed;
           AngryMexicans.powerBar.width = Math.abs(420* Math.sin(this.timeSinceFire * Math.PI * 2 / 5));
           console.log('luc : ' + Math.sin(this.timeSinceFire * Math.PI * 2));
-          //this.timeSinceSpawn = 0;
 
       }
         // this.timeSinceLastFire += AngryMexicans.game.time.physicsElapsed;
       if(AngryMexicans.game.input.mousePointer.isUp &&  AngryMexicans.bulletCheckKilled == true && AngryMexicans.powerBar.width > 0) {
               AngryMexicans.bulletCheckKilled = false;
-              if (AngryMexicans.BULLETS > 1)
+              if (AngryMexicans.BULLETS > 0)
               this.fire(AngryMexicans.powerBar.width/420);
               AngryMexicans.BULLETS--;
-              this.timeSinceLastFire = 0;
+              // this.timeSinceLastFire = 0;
               AngryMexicans.powerBar.width = 0;
         }
 
@@ -59,7 +58,7 @@ class Mexican{
         new BulletController(
             this.sprite.position,
             'bullet-upgraded',
-            {bulletSpeed: speed * 2000}
+            {bulletSpeed: speed * AngryMexicans.configs.bulletMaxSpeed}
         );
         AngryMexicans.audioGunType1.play();
     }

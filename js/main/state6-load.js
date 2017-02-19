@@ -14,15 +14,15 @@ var loadState = {
       AngryMexicans.game.load.image('borderbar', 'Assets/borderbar.png');
       AngryMexicans.game.load.image('powerbar', 'Assets/powerbar.png');
       AngryMexicans.game.load.image('background', 'Assets/map4.png');
-      AngryMexicans.game.load.spritesheet('explosion', '/assets/gfx/explosion.png', 128, 128);
+      AngryMexicans.game.load.spritesheet('explosion', '/Assets/gfx/explosion.png', 128, 128);
 
-      AngryMexicans.game.load.physics('spritePhysics', 'assets/sprite_physics.json');
+      AngryMexicans.game.load.physics('spritePhysics', 'Assets/sprite_physics.json');
 
-      AngryMexicans.game.load.audio('audioGunType1','/assets/sound/gunType1.mp3');
-      AngryMexicans.game.load.audio('audioGunType2','/assets/sound/gunType2.mp3');
-      AngryMexicans.game.load.audio('audioTrumpHit','/assets/sound/trumpHit.mp3');
-      AngryMexicans.game.load.audio('audioUnlockStage','/assets/sound/unlockStage.mp3');
-      AngryMexicans.game.load.audio('audioWonState','/assets/sound/won.mp3');
+      AngryMexicans.game.load.audio('audioGunType1','/Assets/sound/gunType1.mp3');
+      AngryMexicans.game.load.audio('audioGunType2','/Assets/sound/gunType2.mp3');
+      AngryMexicans.game.load.audio('audioTrumpHit','/Assets/sound/trumpHit.mp3');
+      AngryMexicans.game.load.audio('audioUnlockStage','/Assets/sound/unlockStage.mp3');
+      AngryMexicans.game.load.audio('audioWonState','/Assets/sound/won.mp3');
     },
 
     create : function(){
