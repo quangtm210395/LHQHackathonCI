@@ -1,12 +1,10 @@
 class Mexican{
-    constructor(x, y, spriteName, configs) {
+    constructor(x, y, spriteName) {
         this.sprite = AngryMexicans.playerGroup.create(
             x, y,
              "assets",
-            spriteName + ".png",
-            configs
+            spriteName + ".png"
         );
-        this.configs = configs;
         this.sprite.father = this;
         this.sprite.body.mass = AngryMexicans.configs.MASS;
 
@@ -35,8 +33,9 @@ class Mexican{
               if (AngryMexicans.BULLETS > 0)
               this.fire(AngryMexicans.powerBar.width/420);
               AngryMexicans.BULLETS--;
-              // this.timeSinceLastFire = 0;
+              this.timeSinceFire = 0;
               AngryMexicans.powerBar.width = 0;
+
         }
 
         this.sprite.body.setZeroVelocity();

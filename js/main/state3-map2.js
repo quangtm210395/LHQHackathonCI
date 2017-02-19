@@ -1,16 +1,5 @@
 var map2State = {
     create: function() {
-        //setSound
-        AngryMexicans.audioGunType1 = AngryMexicans.game.add.audio('audioGunType1');
-        AngryMexicans.audioGunType2 = AngryMexicans.game.add.audio('audioGunType2');
-        AngryMexicans.audioTrumpHit = AngryMexicans.game.add.audio('audioTrumpHit');
-        AngryMexicans.audioUnlockStage = AngryMexicans.game.add.audio('audioUnlockStage');
-
-        AngryMexicans.game.sound.setDecodedCallback([AngryMexicans.audioGunType1,
-            AngryMexicans.audioGunType2,
-            AngryMexicans.audioTrumpHit,
-            AngryMexicans.audioUnlockStage
-        ], map1State.startSound, this);
 
         //
         AngryMexicans.BULLETS = 3;
@@ -60,14 +49,8 @@ var map2State = {
             'trump', {}
         );
 
-        //add mexicans
-        new Mexican(
-            100,
-            AngryMexicans.configs.gameHeight - 50,
-            'mexican' + AngryMexicans.game.rnd.integerInRange(1, 3), {
-                cooldown: 0.15
-            }
-        );
+        //add mexican
+        this.createMexican(AngryMexicans.game.rnd.integerInRange(1, 3));
 
         //add wall
         new WallController(AngryMexicans.configs.gameWidth - 490 - 200, AngryMexicans.configs.gameHeight - 157, "wall", {
@@ -85,6 +68,18 @@ var map2State = {
         AngryMexicans.stand = AngryMexicans.game.add.sprite(150, AngryMexicans.game.height - 80, 'assets', 'stand.png');
 
         AngryMexicans.bulletCheckKilled = true;
+    },
+
+    createMexican(type) {
+        if (type == 1)
+            new MexicanType1(100,
+                AngryMexicans.configs.gameHeight - 50);
+        else if (type == 2)
+            new MexicanType2(100,
+                AngryMexicans.configs.gameHeight - 50);
+        else
+            new MexicanType3(100,
+                AngryMexicans.configs.gameHeight - 50);
     },
 
     checkSpritesMove() {
@@ -204,18 +199,6 @@ var map2State = {
     render: function() {
 
         AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 100, "#fff", "30px Arial");
-    },
-
-    startSound: function() {
-
-        AngryMexicans.audioGunType1.volume = 1;
-        AngryMexicans.audioGunType1.loop = false;
-        AngryMexicans.audioGunType2.volume = 1;
-        AngryMexicans.audioGunType2.loop = false;
-        AngryMexicans.audioTrumpHit.volume = 1;
-        AngryMexicans.audioTrumpHit.loop = false;
-        AngryMexicans.audioUnlockStage.volume = 1;
-        AngryMexicans.audioUnlockStage.loop = false;
-
     }
+
 }

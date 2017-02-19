@@ -1,6 +1,18 @@
 var menuState = {
     create : function() {
       AngryMexicans.keyboard = AngryMexicans.game.input.keyboard;
+      //setSound
+      AngryMexicans.audioGunType1 = AngryMexicans.game.add.audio('audioGunType1');
+      AngryMexicans.audioGunType2 = AngryMexicans.game.add.audio('audioGunType2');
+      AngryMexicans.audioTrumpHit = AngryMexicans.game.add.audio('audioTrumpHit');
+      AngryMexicans.audioUnlockStage = AngryMexicans.game.add.audio('audioUnlockStage');
+
+      AngryMexicans.game.sound.setDecodedCallback([AngryMexicans.audioGunType1,
+          AngryMexicans.audioGunType2,
+          AngryMexicans.audioTrumpHit,
+          AngryMexicans.audioUnlockStage
+      ], menuState.startSound, this);
+
       //add map
       // AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0,
       //     AngryMexicans.configs.gameWidth,
@@ -29,6 +41,19 @@ var menuState = {
 
     start2 : function() {
         AngryMexicans.game.state.start('map2');
+    },
+
+    startSound: function() {
+
+        AngryMexicans.audioGunType1.volume = 1;
+        AngryMexicans.audioGunType1.loop = false;
+        AngryMexicans.audioGunType2.volume = 1;
+        AngryMexicans.audioGunType2.loop = false;
+        AngryMexicans.audioTrumpHit.volume = 1;
+        AngryMexicans.audioTrumpHit.loop = false;
+        AngryMexicans.audioUnlockStage.volume = 1;
+        AngryMexicans.audioUnlockStage.loop = false;
+
     }
 
 

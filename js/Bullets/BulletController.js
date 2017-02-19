@@ -62,9 +62,9 @@ class BulletController {
         // game over
         if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
 
-        console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
-            (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
-        console.log('entity health: ' + entity.sprite.health);
+        // console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
+        //     (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
+        // console.log('entity health: ' + entity.sprite.health);
     }
 
     onBulletHitTrump(bullet, trump) {
@@ -80,9 +80,9 @@ class BulletController {
         if (!trump.sprite.alive) AngryMexicans.OVERBULLETKILLTRUMP = true;
         if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
 
-        console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
-            (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
-        console.log('trump health: ' + trump.sprite.health);
+        // console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
+        //     (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+        // console.log('trump health: ' + trump.sprite.health);
     }
 
     getExplosion(x, y) {

@@ -39,8 +39,8 @@ class EntityController {
         anotherSprite.sprite.damage(entity.sprite.body.mass * v * v /
             (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
 
-        console.log('entity damg: ' + entity.sprite.body.mass * v * v /
-            (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
-        console.log('health: ' + anotherSprite.sprite.health)
+        // console.log('entity damg: ' + entity.sprite.body.mass * v * v /
+        //     (4 * anotherSprite.sprite.body.mass * AngryMexicans.configs.K));
+        // console.log('health: ' + anotherSprite.sprite.health)
     }
 }
