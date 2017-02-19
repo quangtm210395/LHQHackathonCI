@@ -122,48 +122,49 @@ var map2State = {
     createEntity : function(){
       // create entity
       AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 320 + 200, AngryMexicans.configs.gameHeight - 100, {
+        width: 21,
+        height: 204,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new GlassController(AngryMexicans.configs.gameWidth - 320 + 200 - 20, AngryMexicans.configs.gameHeight - 100, {
+        width: 21,
+        height: 21,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new GlassController(AngryMexicans.configs.gameWidth -100, AngryMexicans.configs.gameHeight - 100 - 110, {
+        width: 21,
+        height: 21,
+        rotation: Math.PI/2
+    }));
+    // AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 300, AngryMexicans.configs.gameHeight - 37, {
+    //     width: 21,
+    //     height: 21,
+    //     rotation: Math.PI/2
+    // }));
+    AngryMexicans.entities.push(new GlassController(AngryMexicans.configs.gameWidth - 10, AngryMexicans.configs.gameHeight - 100, {
+        width: 21,
+        height: 21,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new RockRectangleController(AngryMexicans.configs.gameWidth - 200, AngryMexicans.configs.gameHeight - 20, {
+        width: 21,
+        height: 21,
+        rotation: 0
+    }));
+    AngryMexicans.entities.push(new RockRectangleController(AngryMexicans.configs.gameWidth - 200 - 85, AngryMexicans.configs.gameHeight - 20, {
+        width: 21,
+        height: 21,
+        rotation: 0
+    }));
+    for (var i = 1; i <= 4; i++){
+      AngryMexicans.entities.push(new RockRectangleController(AngryMexicans.configs.gameWidth - 200 - 85,
+        AngryMexicans.configs.gameHeight - 20 - i*40, {
           width: 21,
-          height: 204,
+          height: 21,
           rotation: 0
       }));
-      AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 490 + 200, AngryMexicans.configs.gameHeight - 100, {
-          width: 21,
-          height: 204,
-          rotation: 0
-      }));
-      AngryMexicans.entities.push(new WoodController(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 200 - 10, {
-          width: 21,
-          height: 204,
-          rotation: Math.PI / 2
-      }));
-      AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200, AngryMexicans.configs.gameHeight-37, {
-          width: 21,
-          height: 204,
-          rotation: 0
-      }));
-
-      AngryMexicans.entities.push(new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200 + 180 + 80, AngryMexicans.configs.gameHeight-37, {
-          width: 21,
-          height: 204,
-          rotation: 0
-      }));
-      AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 320 + 200 - 20, AngryMexicans.configs.gameHeight - 100 - 210, {
-          width: 21,
-          height: 204,
-          rotation: 0
-      }));
-      AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 490 + 200 + 20, AngryMexicans.configs.gameHeight - 100 - 210, {
-          width: 21,
-          height: 204,
-          rotation: 0
-      }));
-      AngryMexicans.entities.push(new WoodType2Controller(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 100 - 210 - 80, {
-          width: 21,
-          height: 204,
-          rotation: Math.PI / 2
-      }));
-
-    },
+    }
+  },
 
     render : function() {
 
