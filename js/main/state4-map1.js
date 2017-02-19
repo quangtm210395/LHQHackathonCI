@@ -166,7 +166,6 @@ var map1State = {
             bullet.body.rotation = Math.atan2(bullet.body.velocity.y, bullet.body.velocity.x) + Math.PI / 2;
         }, this);
 
-
     },
 
     getExplosion: function(x, y) {
