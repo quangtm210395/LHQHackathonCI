@@ -35,11 +35,13 @@ class EntityController {
     }
 
     onCollides(entity, trump) {
-        var v = Math.sqrt(Math.pow(entity.sprite.body.velocity.y, 2) + Math.pow(entity.sprite.body.velocity.x, 2));
+        var v = Math.sqrt(Math.pow(entity.sprite.body.velocity.y, 2) + Math.pow(entity.sprite.body.velocity.x, 2)) * 1.5;
         trump.sprite.damage(entity.sprite.body.mass * v * v /
             (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
-
-            if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+        AngryMexicans.HEALTH = trump.sprite.health;
+        console.log('trump health: ' + trump.sprite.health);
+            if (AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+            // if(AngryMexicans.HEALTH > 0 && AngryMexicans.BULLETS == 0) AngryMexicans.LOST = true;
 
         // console.log('entity damg: ' + entity.sprite.body.mass * v * v /
         //     (4 * trump.sprite.body.mass * AngryMexicans.configs.K));

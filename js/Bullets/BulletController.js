@@ -26,6 +26,7 @@ class BulletController {
             map1State.getExplosion(bullet.sprite.x, bullet.sprite.y);
             AngryMexicans.bulletCheckKilled = true;
             if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+            if (AngryMexicans.HEALTH > 0 && AngryMexicans.BULLETS == 0) AngryMexicans.LOST = true;
         });
         this.sprite.body.collides([AngryMexicans.entityCollisionGroup, AngryMexicans.bulletCollisionGroup], this.onBulletHitEntity);
         this.sprite.body.collides([AngryMexicans.enemyCollisionGroup], this.onBulletHitTrump);
@@ -47,6 +48,7 @@ class BulletController {
         this.sprite.body.removeFromWorld();
         AngryMexicans.bulletCheckKilled = true;
         if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+        if(AngryMexicans.HEALTH > 0 && AngryMexicans.BULLETS == 0) AngryMexicans.LOST = true;
     }
 
     onBulletHitEntity(bullet, entity) {
@@ -59,7 +61,8 @@ class BulletController {
         entity.sprite.damage(bullet.sprite.body.mass * v * v /
             (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
         // game over
-        if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+        if (AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+        if(AngryMexicans.HEALTH > 0 && AngryMexicans.BULLETS == 0) AngryMexicans.LOST = true;
 
         // console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
         //     (4 * entity.sprite.body.mass * AngryMexicans.configs.K));
@@ -75,9 +78,12 @@ class BulletController {
         var v = AngryMexicans.configs.bulletMaxSpeed * 2 / 3;
         trump.sprite.damage(bullet.sprite.body.mass * v * v /
             (4 * trump.sprite.body.mass * AngryMexicans.configs.K));
+
+        AngryMexicans.HEALTH = trump.sprite.health;
+        console.log('trump health: ' + trump.sprite.health);
         // game over
         if (!trump.sprite.alive) AngryMexicans.OVERBULLETKILLTRUMP = true;
-        if (AngryMexicans.BULLETS == 0 || AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
+        if (AngryMexicans.HEALTH <= 0) AngryMexicans.OVER = true;
 
         // console.log('bullet damg: ' + bullet.sprite.body.mass * v * v /
         //     (4 * trump.sprite.body.mass * AngryMexicans.configs.K));

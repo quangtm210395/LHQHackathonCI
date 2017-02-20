@@ -4,6 +4,7 @@ var map1State = {
         AngryMexicans.BULLETS = 3;
         AngryMexicans.HEALTH;
         AngryMexicans.OVER = false;
+        AngryMexicans.LOST = false;
         AngryMexicans.OVERBULLETKILLTRUMP = false;
 
         //  Turn on impact events for the world, without this we get no collision callbacks
@@ -95,7 +96,7 @@ var map1State = {
     loadWinState: function() {
         AngryMexicans.game.add.text(500, 200, 'YOU WIN', {
             font: "50px Arial",
-            fill: "#ecf0f1"
+            fill: "#00cc00"
         });
         AngryMexicans.audioWonState.play();
         setTimeout(function() {
@@ -106,7 +107,7 @@ var map1State = {
     loadLostState: function() {
         AngryMexicans.game.add.text(500, 200, 'GAME OVER', {
             font: "50px Arial",
-            fill: "#ecf0f1"
+            fill: "#ff0000"
         });
         AngryMexicans.audioLostState.play();
         setTimeout(function() {
@@ -119,21 +120,17 @@ var map1State = {
             map1State.loadWinState();
             AngryMexicans.OVERBULLETKILLTRUMP = null;
             console.log(1);
-        } else if (AngryMexicans.OVER){
-            var moves = map1State.checkSpritesMove();
-            //console.log(moves);
-
-            if (moves == false && AngryMexicans.OVER) {
-                if (AngryMexicans.HEALTH <= 0) {
-                    map1State.loadWinState();
-                    AngryMexicans.OVER = null;
-                    console.log(2);
-                } else {
-                    map1State.loadLostState();
-                    AngryMexicans.OVER = null;
-                    console.log(3);
-                }
+        } else if (AngryMexicans.OVER) {
+            if (AngryMexicans.HEALTH <= 0) {
+                map1State.loadWinState();
+                AngryMexicans.OVER = null;
+                console.log(2);
             }
+        }
+         if (AngryMexicans.LOST == true){
+            map1State.loadLostState();
+            AngryMexicans.LOST = null;
+            console.log(3);
         }
 
         //set gun angle to Mouse Pointer
@@ -241,7 +238,7 @@ var map1State = {
 
     render: function() {
 
-        AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 200, "#fff", "30px Arial");
+        AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 200, "#0000ff", "30px Arial");
     }
 
 

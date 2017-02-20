@@ -11,6 +11,7 @@ class Trump {
 
         this.sprite.body.mass = AngryMexicans.configs.MASS;
         this.sprite.health = 100;
+        AngryMexicans.HEALTH = this.sprite.health;
         // this.sprite.body.debug = true;
         this.sprite.body.setRectangle(50, 90, 5, 5);
         this.sprite.body.clearShapes();
@@ -24,7 +25,7 @@ class Trump {
     }
 
     update() {
-        AngryMexicans.HEALTH = this.sprite.health;
+        // AngryMexicans.HEALTH = this.sprite.health;
 
         this.sprite.body.setZeroVelocity();
         if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {

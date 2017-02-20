@@ -13,7 +13,7 @@ var loadState = {
       AngryMexicans.game.load.atlasJSONHash('assets', 'Assets/assets.png', 'Assets/assets.json');
       AngryMexicans.game.load.image('borderbar', 'Assets/borderbar.png');
       AngryMexicans.game.load.image('powerbar', 'Assets/powerbar.png');
-      AngryMexicans.game.load.image('background', 'Assets/map4.png');
+      AngryMexicans.game.load.image('background', 'Assets/map3.png');
       AngryMexicans.game.load.image('button', 'Assets/button.png');
       AngryMexicans.game.load.spritesheet('explosion', '/Assets/gfx/explosion.png', 128, 128);
 
