@@ -39,18 +39,18 @@ class Mexican{
         }
 
         this.sprite.body.setZeroVelocity();
-        if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.A)){
-            this.sprite.body.moveLeft(200);
-        }
-        if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.D)){
-            this.sprite.body.moveRight(200);
-        }
-        if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.W)){
-            this.sprite.body.moveUp(200);
-        }
-        if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.S)){
-            this.sprite.body.moveDown(200);
-        }
+        // if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.A)){
+        //     this.sprite.body.moveLeft(200);
+        // }
+        // if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.D)){
+        //     this.sprite.body.moveRight(200);
+        // }
+        // if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.W)){
+        //     this.sprite.body.moveUp(200);
+        // }
+        // if(AngryMexicans.keyboard.isDown(Phaser.Keyboard.S)){
+        //     this.sprite.body.moveDown(200);
+        // }
     }
 
     fire(speed){

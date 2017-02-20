@@ -28,17 +28,17 @@ class Trump {
         // AngryMexicans.HEALTH = this.sprite.health;
 
         this.sprite.body.setZeroVelocity();
-        if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-            this.sprite.body.moveLeft(200);
-        }
-        if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-            this.sprite.body.moveRight(200);
-        }
-        if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.UP)) {
-            this.sprite.body.moveUp(200);
-        }
-        if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-            this.sprite.body.moveDown(200);
-        }
+        // if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+        //     this.sprite.body.moveLeft(200);
+        // }
+        // if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+        //     this.sprite.body.moveRight(200);
+        // }
+        // if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.UP)) {
+        //     this.sprite.body.moveUp(200);
+        // }
+        // if (AngryMexicans.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+        //     this.sprite.body.moveDown(200);
+        // }
     }
 }
