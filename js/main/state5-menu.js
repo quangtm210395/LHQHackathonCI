@@ -21,33 +21,33 @@ var menuState = {
           AngryMexicans.audioCrash
       ], menuState.setUpSound, this);
 
-      //add map
-      // AngryMexicans.map = AngryMexicans.game.add.tileSprite(0, 0,
+      //add backgroundMenu
+      AngryMexicans.backgroundMenu = AngryMexicans.game.add.tileSprite(0, 0,
+          AngryMexicans.configs.gameWidth,
       //     AngryMexicans.configs.gameWidth,
-      //     AngryMexicans.configs.gameWidth,
-      //      'background');
+          AngryMexicans.configs.gameHeight, 'backgroundMenu');
 
-      var nameLabel = AngryMexicans.game.add.text(200, 200, 'AngryMexicans Game',
-      {font : '50px Arial', fill : '#fff'});
+      var nameLabel = AngryMexicans.game.add.text(400, 100, 'AngryMexicans Game',
+      {font : '50px Cambira', fill : '#ff0000'});
 
-      var startLabel = AngryMexicans.game.add.text(200, 400, 'press 1 to start map 1',
+      var buttonPlay1 = AngryMexicans.game.add.button(400, 200,'buttonPlay1', menuState.onPlayClick, this);
       {font : '30px Arial', fill : '#fff'});
-      var start2Label = AngryMexicans.game.add.text(200, 600, 'press 2 to start map 2',
+      var buttonPlay2 = AngryMexicans.game.add.button(730, 200,'buttonPlay2', menuState.onPauseClick, this);
       {font : '30px Arial', fill : '#fff'});
 
       var keyONE = AngryMexicans.keyboard.addKey(Phaser.Keyboard.ONE);
-      keyONE.onDown.addOnce(this.start, this);
+      // keyONE.onDown.addOnce(this.start, this);
       var keyTWO = AngryMexicans.keyboard.addKey(Phaser.Keyboard.TWO);
-      keyTWO.onDown.addOnce(this.start2, this);
+      // keyTWO.onDown.addOnce(this.start2, this);
 
 
     },
 
-    start : function() {
+    onPlayClick: function(){
         AngryMexicans.game.state.start('map1');
     },
 
-    start2 : function() {
+    onPauseClick: function(){
         AngryMexicans.game.state.start('map2');
     },
 

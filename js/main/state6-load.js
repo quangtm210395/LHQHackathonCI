@@ -15,6 +15,13 @@ var loadState = {
       AngryMexicans.game.load.image('powerbar', 'Assets/powerbar.png');
       AngryMexicans.game.load.image('background', 'Assets/map3.png');
       AngryMexicans.game.load.image('button', 'Assets/button.png');
+      AngryMexicans.game.load.image('backgroundMenu','Assets/background.png');
+      AngryMexicans.game.load.image('buttonPlay','Assets/buttonPlay.png');
+      AngryMexicans.game.load.image('buttonPlay1','Assets/buttonPlay1.png');
+      AngryMexicans.game.load.image('buttonPlay2','Assets/buttonPlay2.png');
+      AngryMexicans.game.load.image('buttonPause','Assets/buttonPause.png');
+      AngryMexicans.game.load.image('buttonMenu','Assets/buttonMenu.png');
+      AngryMexicans.game.load.image('buttonRestart','Assets/buttonRestart.png');
       AngryMexicans.game.load.spritesheet('explosion', '/Assets/gfx/explosion.png', 128, 128);
 
       AngryMexicans.game.load.physics('spritePhysics', 'Assets/sprite_physics.json');
