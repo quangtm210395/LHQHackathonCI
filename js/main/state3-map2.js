@@ -216,6 +216,7 @@ var map2State = {
     },
 
     render: function() {
+        AngryMexicans.game.debug.text('POWER', 100, 40, "#0000ff", "20px Arial");
 
         AngryMexicans.game.debug.text('SHOOTING TIMES: ' + (Math.max(AngryMexicans.BULLETS, 0)), 100, 200, "#0000ff", "30px Arial");
     }
