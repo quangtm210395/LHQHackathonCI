@@ -191,49 +191,90 @@ var map1State = {
     },
 
     createEntity: function() {
-        // create entity
-        new WoodController(AngryMexicans.configs.gameWidth - 320 + 200, AngryMexicans.configs.gameHeight - 100, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
-        new WoodController(AngryMexicans.configs.gameWidth - 490 + 200, AngryMexicans.configs.gameHeight - 100, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
-        new WoodController(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 200 - 10, {
-            width: 21,
-            height: 204,
-            rotation: Math.PI / 2
-        });
-        new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200, AngryMexicans.configs.gameHeight - 37, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
+      // create entity
+      var wood = {
+          width : 18 / 2,
+          height: 200 / 2
+      }
+      var woodType2 = {
+          width : 18 / 2,
+          height: 160 / 2
+      }
+      var rockCircle = {
+          width : 75 / 2,
+          height: 75 / 2
+      }
+      var wood = {
+          width : 18 / 2,
+          height: 200 / 2
+      }
+      var rockRectangle = {
+          width : 84 / 2 ,
+          height: 40 / 2
+      }
 
-        new RockCircleController(AngryMexicans.configs.gameWidth - 490 - 10 - 37 + 200 + 180 + 80, AngryMexicans.configs.gameHeight - 37, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
-        new WoodType2Controller(AngryMexicans.configs.gameWidth - 320 + 200 - 20, AngryMexicans.configs.gameHeight - 98 - 210, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
-        new WoodType2Controller(AngryMexicans.configs.gameWidth - 490 + 200 + 20, AngryMexicans.configs.gameHeight - 98 - 210, {
-            width: 21,
-            height: 204,
-            rotation: 0
-        });
-        new WoodType2Controller(AngryMexicans.configs.gameWidth - 500 + 100 + 200, AngryMexicans.configs.gameHeight - 98 - 210 - 80, {
-            width: 21,
-            height: 204,
-            rotation: Math.PI / 2
-        });
+      new WoodController(AngryMexicans.configs.gameWidth - 120 - wood.height , AngryMexicans.configs.gameHeight - wood.width, {
+          width: 212,
+          height: 204,
+          rotation: Math.PI / 2
+      });
+      new WoodController(AngryMexicans.configs.gameWidth - 120 - wood.width , AngryMexicans.configs.gameHeight - wood.height - wood.width, {
+          width: 212,
+          height: 204,
+          rotation: 0
+      });
+      new WoodController(AngryMexicans.configs.gameWidth - 120 - 200 + wood.width, AngryMexicans.configs.gameHeight - wood.height - wood.width, {
+          width: 212,
+          height: 204,
+          rotation: 0
+      });
 
+      new WoodController(AngryMexicans.configs.gameWidth - 120 - wood.height , AngryMexicans.configs.gameHeight - wood.width - wood.height * 2 - wood.width, {
+          width: 212,
+          height: 204,
+          rotation: Math.PI / 2
+      });
+      new WoodType2Controller(AngryMexicans.configs.gameWidth - 120 - wood.height , AngryMexicans.configs.gameHeight - wood.width * 2 - woodType2.width, {
+          width: 212,
+          height: 204,
+          rotation: Math.PI / 2
+      });
+      new WoodController(AngryMexicans.configs.gameWidth - 120 - wood.height ,
+        AngryMexicans.configs.gameHeight - wood.width - wood.height * 2 - wood.width - wood.width * 2, {
+          width: 212,
+          height: 204,
+          rotation: Math.PI / 2
+      });
+      // new WoodType2Controller(AngryMexicans.configs.gameWidth - 120 - wood.width - wood.width*2,
+      //   AngryMexicans.configs.gameHeight - wood.height - wood.width - wood.height - wood.width * 4 - woodType2.height, {
+      //     width: 212,
+      //     height: 204,
+      //     rotation: 0
+      // }));
+      // new WoodType2Controller(AngryMexicans.configs.gameWidth - 120 - 200 + wood.width*3,
+      //   AngryMexicans.configs.gameHeight - wood.height - wood.width - wood.height - wood.width * 4 - woodType2.height, {
+      //     width: 212,
+      //     height: 204,
+      //     rotation: 0
+      // }));
+      // new WoodType2Controller(AngryMexicans.configs.gameWidth - 120 - wood.height ,
+      //   AngryMexicans.configs.gameHeight -wood.width * 6 - wood.height * 2 - woodType2.height* 2  , {
+      //     width: 212,
+      //     height: 204,
+      //     rotation: Math.PI / 2
+      // }));
+      // new RockCircleController(AngryMexicans.configs.gameWidth - 120 - wood.height - rockCircle.width ,
+      //   AngryMexicans.configs.gameHeight - wood.width - wood.height * 2 - wood.width - rockCircle.height - wood.width * 2, {
+      //     width: 212,
+      //     height: 204,
+      //     rotation: Math.PI / 2
+      // });
+      // new RockCircleController(AngryMexicans.configs.gameWidth - 120 - wood.height + rockCircle.width ,
+      //   AngryMexicans.configs.gameHeight - wood.width - wood.height * 2 - wood.width - rockCircle.height - wood.width * 2, {
+      //     width: 212,
+      //     height: 204,
+      //     rotation: Math.PI / 2
+      // });
     },
 
     render: function() {
