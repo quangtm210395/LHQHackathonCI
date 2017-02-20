@@ -17,6 +17,10 @@ var map1State = {
             AngryMexicans.configs.gameWidth,
             AngryMexicans.configs.gameHeight, 'background');
 
+        //addbutton
+        AngryMexicans.game.add.button(800, 20,'buttonMenu', map1State.onMenuClick, this);
+        AngryMexicans.game.add.button(1000, 20,'buttonRestart', map1State.onRestartClick, this);
+
         //add collisionGroup
         AngryMexicans.playerCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
         AngryMexicans.bulletCollisionGroup = AngryMexicans.game.physics.p2.createCollisionGroup();
@@ -69,6 +73,14 @@ var map1State = {
         // AngryMexicans.timeSinceSpawn = 0;
     },
 
+    onMenuClick(){
+        AngryMexicans.game.state.start('menu');
+    },
+
+    onRestartClick(){
+        AngryMexicans.game.state.start(AngryMexicans.game.state.current);
+    },
+
     createMexican(type) {
         if (type == 1)
             new MexicanType1(100,
@@ -99,9 +111,9 @@ var map1State = {
             fill: "#00cc00"
         });
         AngryMexicans.audioWonState.play();
-        setTimeout(function() {
-            AngryMexicans.game.state.start('menu');
-        }, 4000);
+        // setTimeout(function() {
+        //     AngryMexicans.game.state.start('menu');
+        // }, 4000);
     },
 
     loadLostState: function() {
@@ -110,9 +122,9 @@ var map1State = {
             fill: "#ff0000"
         });
         AngryMexicans.audioLostState.play();
-        setTimeout(function() {
-            AngryMexicans.game.state.start('menu');
-        }, 4000);
+        // setTimeout(function() {
+        //     AngryMexicans.game.state.start('menu');
+        // }, 4000);
     },
 
     update: function() {
