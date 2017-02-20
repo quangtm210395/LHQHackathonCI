@@ -24,22 +24,18 @@ var menuState = {
       //add backgroundMenu
       AngryMexicans.backgroundMenu = AngryMexicans.game.add.tileSprite(0, 0,
           AngryMexicans.configs.gameWidth,
-      //     AngryMexicans.configs.gameWidth,
           AngryMexicans.configs.gameHeight, 'backgroundMenu');
 
       var nameLabel = AngryMexicans.game.add.text(400, 100, 'AngryMexicans Game',
       {font : '50px Cambira', fill : '#ff0000'});
 
       var buttonPlay1 = AngryMexicans.game.add.button(400, 200,'buttonPlay1', menuState.onPlayClick, this);
-      {font : '30px Arial', fill : '#fff'});
       var buttonPlay2 = AngryMexicans.game.add.button(730, 200,'buttonPlay2', menuState.onPauseClick, this);
-      {font : '30px Arial', fill : '#fff'});
 
       var keyONE = AngryMexicans.keyboard.addKey(Phaser.Keyboard.ONE);
       // keyONE.onDown.addOnce(this.start, this);
       var keyTWO = AngryMexicans.keyboard.addKey(Phaser.Keyboard.TWO);
       // keyTWO.onDown.addOnce(this.start2, this);
-
 
     },
 
